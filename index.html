@@ -21,22 +21,108 @@
 
   <style>
     :root {
-      --bg-main: #050816;
-      --bg-soft: #0b1120;
-      --bg-card: rgba(13, 21, 45, 0.72);
-      --border: rgba(91, 168, 255, 0.22);
-      --primary: #1d4ed8;
-      --primary-2: #2563eb;
-      --primary-3: #60a5fa;
+      --bg-main: #020617;
+      --bg-soft: #071126;
+      --bg-card: rgba(8, 16, 34, 0.86);
+      --border: rgba(96, 165, 250, 0.20);
+      --primary: #2563eb;
+      --primary-2: #3b82f6;
+      --primary-3: #7dd3fc;
       --text: #e5f0ff;
       --text-soft: #9fb6d9;
       --metal-1: #dbe7ff;
       --metal-2: #88a4cf;
       --metal-3: #435a84;
-      --shadow-blue: 0 0 25px rgba(59, 130, 246, 0.22);
-      --shadow-strong: 0 18px 45px rgba(0, 0, 0, 0.45);
+      --shadow-blue: 0 0 16px rgba(59, 130, 246, 0.14);
+      --shadow-strong: 0 14px 30px rgba(0, 0, 0, 0.34);
       --radius-xl: 28px;
       --radius-lg: 22px;
+    }
+
+    body.light-theme {
+      --bg-main: #f2f7ff;
+      --bg-soft: #dcecff;
+      --bg-card: rgba(255, 255, 255, 0.92);
+      --border: rgba(37, 99, 235, 0.20);
+      --text: #0f172a;
+      --text-soft: #334155;
+      --metal-1: #0f172a;
+      --metal-2: #1d4ed8;
+      --metal-3: #334155;
+      --shadow-blue: 0 0 12px rgba(37, 99, 235, 0.12);
+      --shadow-strong: 0 10px 24px rgba(15, 23, 42, 0.14);
+    }
+
+    body.light-theme {
+      color-scheme: light;
+    }
+
+    body.light-theme .sidebar {
+      background: linear-gradient(180deg, rgba(235, 244, 255, 0.97), rgba(224, 237, 255, 0.95));
+      border-right: 1px solid rgba(37, 99, 235, 0.12);
+      box-shadow: inset -1px 0 0 rgba(15,23,42,.06);
+    }
+
+    body.light-theme .sidebar-partial,
+    body.light-theme .glass-card,
+    body.light-theme .section-card,
+    body.light-theme .skill-card,
+    body.light-theme .project-card,
+    body.light-theme .extra-card,
+    body.light-theme .formation-card,
+    body.light-theme .timeline-card,
+    body.light-theme .contact-card {
+      background: linear-gradient(165deg, rgba(255,255,255,.98), rgba(242,248,255,.95));
+      border-color: rgba(37, 99, 235, 0.2);
+      box-shadow: 0 8px 20px rgba(15,23,42,.08), 0 0 0 rgba(0,0,0,0);
+    }
+
+    body.light-theme .card-title-custom,
+    body.light-theme .section-title,
+    body.light-theme .sidebar-name,
+    body.light-theme .stat-number {
+      color: #0f172a;
+    }
+
+    body.light-theme .hero-kicker,
+    body.light-theme .project-badge {
+      color: #1e293b;
+      background: rgba(37,99,235,.08);
+      border-color: rgba(37,99,235,.22);
+    }
+
+    body.light-theme .sidebar-nav a,
+    body.light-theme .sidebar-role,
+    body.light-theme .card-text-custom,
+    body.light-theme .section-subtitle,
+    body.light-theme .stat-label,
+    body.light-theme .contact-link,
+    body.light-theme .footer-note {
+      color: #334155;
+    }
+
+    body.light-theme .sidebar-nav a:hover,
+    body.light-theme .sidebar-nav a.active {
+      color: #0f172a;
+      background: linear-gradient(90deg, rgba(37,99,235,.16), rgba(255,255,255,.8));
+      border-color: rgba(37,99,235,.22);
+    }
+
+    body.light-theme .theme-toggle,
+    body.light-theme .project-filter-btn,
+    body.light-theme .btn-outline-custom {
+      color: #0f172a;
+      background: rgba(255,255,255,.9);
+      border-color: rgba(37,99,235,.24);
+    }
+
+    body.light-theme .btn-main {
+      color: #ffffff;
+    }
+
+    body.light-theme .mobile-topbar {
+      background: rgba(242,247,255,.95);
+      border-bottom: 1px solid rgba(37,99,235,.18);
     }
 
     * {
@@ -49,11 +135,12 @@
     body {
       font-family: 'Inter', sans-serif;
       background:
-        radial-gradient(circle at top left, rgba(59,130,246,.12), transparent 28%),
-        radial-gradient(circle at bottom right, rgba(96,165,250,.10), transparent 22%),
-        linear-gradient(135deg, #030712 0%, #071120 45%, #02050d 100%);
+        radial-gradient(circle at 18% 12%, rgba(59,130,246,.10), transparent 34%),
+        radial-gradient(circle at 82% 86%, rgba(56,189,248,.08), transparent 30%),
+        linear-gradient(135deg, var(--bg-main) 0%, var(--bg-soft) 52%, #02050f 100%);
       color: var(--text);
       overflow-x: hidden;
+      transition: background .35s ease, color .25s ease;
     }
 
     body::before {
@@ -61,8 +148,8 @@
       position: fixed;
       inset: 0;
       background:
-        linear-gradient(115deg, rgba(255,255,255,.03), transparent 20%, transparent 80%, rgba(255,255,255,.02)),
-        repeating-linear-gradient(90deg, rgba(255,255,255,.015) 0 1px, transparent 1px 120px);
+        linear-gradient(120deg, rgba(255,255,255,.02), transparent 24%, transparent 78%, rgba(255,255,255,.015)),
+        repeating-linear-gradient(90deg, rgba(255,255,255,.01) 0 1px, transparent 1px 160px);
       pointer-events: none;
       z-index: -2;
     }
@@ -70,20 +157,31 @@
     body::after {
       content: "";
       position: fixed;
-      width: 500px;
-      height: 500px;
+      width: 420px;
+      height: 420px;
       right: -180px;
       top: -120px;
-      background: radial-gradient(circle, rgba(59,130,246,.18), transparent 70%);
-      filter: blur(25px);
+      background: radial-gradient(circle, rgba(59,130,246,.14), transparent 72%);
+      filter: blur(18px);
       pointer-events: none;
       z-index: -1;
-      animation: pulseGlow 6s infinite ease-in-out;
+      animation: pulseGlow 10s infinite ease-in-out;
     }
 
     @keyframes pulseGlow {
       0%, 100% { transform: scale(1); opacity: .7; }
-      50% { transform: scale(1.15); opacity: 1; }
+      50% { transform: scale(1.08); opacity: .85; }
+    }
+
+    body.light-theme::before {
+      background:
+        linear-gradient(120deg, rgba(37,99,235,.06), transparent 24%, transparent 78%, rgba(148,163,184,.08)),
+        repeating-linear-gradient(90deg, rgba(37,99,235,.04) 0 1px, transparent 1px 160px);
+    }
+
+    body.light-theme::after {
+      background: radial-gradient(circle, rgba(37,99,235,.22), transparent 72%);
+      filter: blur(24px);
     }
 
     .app-shell {
@@ -134,8 +232,8 @@
         linear-gradient(145deg, #102344, #091120),
         linear-gradient(145deg, #fff, #6ea8ff);
       padding: 4px;
-      box-shadow: 0 0 30px rgba(59,130,246,.35), inset 0 2px 10px rgba(255,255,255,.15);
-      animation: floatPhoto 4s ease-in-out infinite;
+      box-shadow: 0 0 20px rgba(59,130,246,.25), inset 0 2px 10px rgba(255,255,255,.12);
+      animation: floatPhoto 8s ease-in-out infinite;
       margin-bottom: 18px;
     }
 
@@ -154,7 +252,7 @@
 
     @keyframes floatPhoto {
       0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-8px); }
+      50% { transform: translateY(-4px); }
     }
 
     .metal-text {
@@ -299,6 +397,24 @@
       position: relative;
     }
 
+    .glass-card::after,
+    .section-card::after,
+    .skill-card::after,
+    .project-card::after,
+    .extra-card::after,
+    .formation-card::after,
+    .timeline-card::after,
+    .contact-card::after {
+      content: "";
+      position: absolute;
+      inset: auto 12% -70px;
+      height: 120px;
+      background: radial-gradient(ellipse at center, rgba(59,130,246,.22), transparent 72%);
+      pointer-events: none;
+      z-index: -1;
+      opacity: .75;
+    }
+
     .glass-card::before,
     .section-card::before {
       content: "";
@@ -337,7 +453,7 @@
       background-size: 220% auto;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      animation: shineText 5s linear infinite;
+      animation: shineText 9s linear infinite;
     }
 
     @keyframes shineText {
@@ -374,12 +490,12 @@
     .btn-main {
       color: #fff;
       background: linear-gradient(135deg, #2563eb, #60a5fa 55%, #93c5fd);
-      box-shadow: 0 14px 30px rgba(37,99,235,.32);
+      box-shadow: 0 10px 20px rgba(37,99,235,.24);
     }
 
     .btn-main:hover {
       transform: translateY(-4px);
-      box-shadow: 0 20px 34px rgba(37,99,235,.38), 0 0 25px rgba(96,165,250,.3);
+      box-shadow: 0 14px 26px rgba(37,99,235,.3), 0 0 16px rgba(96,165,250,.2);
     }
 
     .btn-outline-custom {
@@ -412,8 +528,8 @@
     }
 
     .stat-box:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 15px 28px rgba(0,0,0,.25), 0 0 24px rgba(59,130,246,.15);
+      transform: translateY(-4px);
+      box-shadow: 0 10px 22px rgba(0,0,0,.22), 0 0 14px rgba(59,130,246,.12);
     }
 
     .stat-number {
@@ -466,11 +582,15 @@
     .contact-card {
       padding: 22px;
       border-radius: 22px;
-      background: linear-gradient(145deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+      background: linear-gradient(145deg, color-mix(in srgb, var(--bg-card) 88%, white 12%), var(--bg-card));
       border: 1px solid rgba(147,197,253,.14);
       box-shadow: inset 0 1px 0 rgba(255,255,255,.05);
       transition: .35s ease;
       height: 100%;
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
     }
 
     .skill-card:hover,
@@ -479,8 +599,8 @@
     .formation-card:hover,
     .timeline-card:hover,
     .contact-card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 18px 35px rgba(0,0,0,.28), 0 0 22px rgba(59,130,246,.16);
+      transform: translateY(-5px);
+      box-shadow: 0 12px 26px rgba(0,0,0,.24), 0 0 14px rgba(59,130,246,.13);
       border-color: rgba(96,165,250,.28);
     }
 
@@ -588,6 +708,56 @@
       background: rgba(59,130,246,.12);
     }
 
+    .project-actions {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .project-btn {
+      text-decoration: none;
+      border-radius: 10px;
+      padding: 8px 10px;
+      font-size: .78rem;
+      font-weight: 700;
+      text-align: center;
+      border: 1px solid rgba(147,197,253,.24);
+      color: #dbeafe;
+      background: rgba(9, 20, 42, 0.7);
+      transition: .2s ease;
+    }
+
+    .project-btn:hover {
+      color: white;
+      transform: translateY(-2px);
+      border-color: rgba(125,211,252,.5);
+    }
+
+    .project-btn.primary {
+      background: linear-gradient(135deg, #2563eb, #3b82f6);
+      border-color: rgba(125,211,252,.35);
+      color: #fff;
+    }
+
+    .project-btn.secondary {
+      background: rgba(15, 23, 42, 0.78);
+    }
+
+    .project-btn.info {
+      background: rgba(30, 64, 175, 0.36);
+    }
+
+    body.light-theme .project-btn {
+      color: #0f172a;
+      background: rgba(255,255,255,.92);
+      border-color: rgba(37,99,235,.22);
+    }
+
+    body.light-theme .project-btn.primary {
+      color: #fff;
+    }
+
     .contact-list {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -635,6 +805,256 @@
 
     .mobile-topbar .btn {
       border-radius: 14px;
+    }
+
+    .theme-toggle {
+      border-radius: 14px;
+      border: 1px solid rgba(147,197,253,.28);
+      background: rgba(255,255,255,.05);
+      color: var(--text);
+      font-weight: 600;
+      padding: 8px 14px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: .25s ease;
+    }
+
+    .theme-toggle:hover {
+      border-color: rgba(96,165,250,.5);
+      transform: translateY(-2px);
+    }
+
+    .card-content {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      gap: 10px;
+    }
+
+    .card-end {
+      margin-top: auto;
+      padding-top: 8px;
+    }
+
+    .project-filter {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+
+    .project-filter-btn {
+      border-radius: 999px;
+      border: 1px solid rgba(147,197,253,.3);
+      background: rgba(255,255,255,.04);
+      color: var(--text);
+      padding: 8px 14px;
+      font-size: .86rem;
+      font-weight: 600;
+      transition: .2s ease;
+    }
+
+    .project-filter-btn.active,
+    .project-filter-btn:hover {
+      background: linear-gradient(145deg, rgba(59,130,246,.25), rgba(255,255,255,.07));
+      border-color: rgba(59,130,246,.45);
+    }
+
+    .project-card.hidden {
+      display: none;
+    }
+
+    .modal-content {
+      background: linear-gradient(165deg, rgba(8,16,34,.98), rgba(10,20,42,.95));
+      border: 1px solid rgba(96,165,250,.22);
+      color: var(--text);
+    }
+
+    body.light-theme .modal-content {
+      background: linear-gradient(165deg, rgba(255,255,255,.98), rgba(241,247,255,.98));
+      color: #0f172a;
+      border-color: rgba(37,99,235,.2);
+    }
+
+    body.light-theme .btn-close {
+      filter: none;
+    }
+
+
+    /* --- Design System P&B (Currículo) --- */
+    :root {
+      --bg-main: #050505;
+      --bg-soft: #111111;
+      --bg-card: rgba(18, 18, 18, 0.92);
+      --border: rgba(255, 255, 255, 0.18);
+      --primary: #ffffff;
+      --primary-2: #e6e6e6;
+      --primary-3: #b8b8b8;
+      --text: #f4f4f4;
+      --text-soft: #cfcfcf;
+      --metal-1: #ffffff;
+      --metal-2: #d7d7d7;
+      --metal-3: #9a9a9a;
+      --shadow-blue: 0 0 16px rgba(255, 255, 255, 0.12);
+      --shadow-strong: 0 16px 34px rgba(0, 0, 0, 0.42);
+    }
+
+    body {
+      background:
+        radial-gradient(circle at 15% 12%, rgba(255,255,255,.08), transparent 32%),
+        radial-gradient(circle at 88% 86%, rgba(255,255,255,.06), transparent 30%),
+        linear-gradient(140deg, #030303 0%, var(--bg-soft) 54%, #060606 100%);
+    }
+
+    body::before {
+      background:
+        linear-gradient(120deg, rgba(255,255,255,.03), transparent 22%, transparent 78%, rgba(255,255,255,.02)),
+        repeating-linear-gradient(90deg, rgba(255,255,255,.02) 0 1px, transparent 1px 130px);
+    }
+
+    body::after {
+      background: radial-gradient(circle, rgba(255,255,255,.22), transparent 72%);
+      filter: blur(20px);
+    }
+
+    body.light-theme {
+      --bg-main: #f8f8f8;
+      --bg-soft: #ebebeb;
+      --bg-card: rgba(255,255,255,0.96);
+      --border: rgba(0,0,0,.18);
+      --primary: #111111;
+      --primary-2: #222222;
+      --primary-3: #4d4d4d;
+      --text: #0b0b0b;
+      --text-soft: #2e2e2e;
+      --metal-1: #090909;
+      --metal-2: #333333;
+      --metal-3: #666666;
+      --shadow-blue: 0 0 14px rgba(0, 0, 0, 0.10);
+      --shadow-strong: 0 12px 24px rgba(0, 0, 0, 0.12);
+    }
+
+    body.light-theme::before {
+      background:
+        linear-gradient(120deg, rgba(0,0,0,.05), transparent 24%, transparent 78%, rgba(0,0,0,.04)),
+        repeating-linear-gradient(90deg, rgba(0,0,0,.05) 0 1px, transparent 1px 130px);
+    }
+
+    body.light-theme::after {
+      background: radial-gradient(circle, rgba(0,0,0,.16), transparent 74%);
+      filter: blur(20px);
+    }
+
+    .sidebar,
+    .sidebar-partial,
+    .glass-card,
+    .section-card,
+    .skill-card,
+    .project-card,
+    .extra-card,
+    .formation-card,
+    .timeline-card,
+    .contact-card {
+      border-color: var(--border) !important;
+      box-shadow: var(--shadow-strong), inset 0 1px 0 rgba(255,255,255,.04), var(--shadow-blue) !important;
+    }
+
+    .section-card { padding: 28px; }
+    .skill-card,
+    .project-card,
+    .extra-card,
+    .formation-card,
+    .timeline-card,
+    .contact-card {
+      padding: 18px;
+      border-radius: 18px;
+    }
+
+    .skill-grid,
+    .project-grid,
+    .extra-grid,
+    .formation-grid,
+    .contact-list {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .project-grid {
+      max-height: 760px;
+      overflow-y: auto;
+      padding-right: 6px;
+      align-content: start;
+    }
+
+    .project-grid::-webkit-scrollbar { width: 8px; }
+    .project-grid::-webkit-scrollbar-track { background: rgba(127,127,127,.16); border-radius: 999px; }
+    .project-grid::-webkit-scrollbar-thumb { background: linear-gradient(180deg, #9f9f9f, #5e5e5e); border-radius: 999px; }
+
+    .project-filter-btn,
+    .theme-toggle,
+    .btn-outline-custom,
+    .project-btn.secondary,
+    .project-btn.info {
+      background: rgba(255,255,255,.06);
+      color: var(--text);
+      border-color: var(--border);
+    }
+
+    .project-filter-btn.active,
+    .project-filter-btn:hover,
+    .btn-outline-custom:hover,
+    .project-btn:hover {
+      background: rgba(255,255,255,.14);
+      color: var(--text);
+    }
+
+    .btn-main,
+    .project-btn.primary {
+      background: linear-gradient(145deg, #f3f3f3, #bfbfbf);
+      color: #0a0a0a;
+      border-color: rgba(255,255,255,.3);
+      box-shadow: 0 10px 20px rgba(255,255,255,.14);
+    }
+
+    body.light-theme .btn-main,
+    body.light-theme .project-btn.primary {
+      background: linear-gradient(145deg, #1a1a1a, #3a3a3a);
+      color: #ffffff;
+      box-shadow: 0 10px 20px rgba(0,0,0,.16);
+    }
+
+    .project-badge {
+      background: rgba(255,255,255,.08);
+      border-color: rgba(255,255,255,.22);
+      color: var(--text);
+    }
+
+    body.light-theme .project-badge {
+      background: rgba(0,0,0,.08);
+      border-color: rgba(0,0,0,.22);
+    }
+
+    .metal-text {
+      background: linear-gradient(180deg, #ffffff, #d3d3d3 45%, #9f9f9f 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    body.light-theme .metal-text {
+      background: linear-gradient(180deg, #111111, #333333 45%, #666666 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    @media (max-width: 1199.98px) {
+      .skill-grid,
+      .project-grid,
+      .extra-grid,
+      .formation-grid,
+      .contact-list {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
     }
 
     @media (max-width: 991.98px) {
@@ -692,9 +1112,12 @@
     <div>
       <strong class="metal-text">Meu Portfólio</strong>
     </div>
-    <button class="btn btn-outline-light btn-sm" data-bs-toggle="offcanvas" data-bs-target="#mobileSidebar">
-      <i class="bi bi-list"></i>
-    </button>
+    <div class="d-flex gap-2">
+      <button class="theme-toggle btn-sm" id="themeToggleMobile" type="button"><i class="bi bi-sun"></i><span>Modo Light</span></button>
+      <button class="btn btn-outline-light btn-sm" data-bs-toggle="offcanvas" data-bs-target="#mobileSidebar">
+        <i class="bi bi-list"></i>
+      </button>
+    </div>
   </div>
 
   <div class="offcanvas offcanvas-start text-bg-dark" tabindex="-1" id="mobileSidebar">
@@ -722,6 +1145,9 @@
         <!-- Partial: Sidebar -->
         <div class="sidebar-partial">
           <div class="w-100 text-center">
+            <div class="d-flex justify-content-center mb-3">
+              <button class="theme-toggle" id="themeToggleDesktop" type="button"><i class="bi bi-sun"></i><span>Modo Light</span></button>
+            </div>
             <div class="profile-photo mx-auto">
               <div class="profile-photo-inner">
                 <i class="bi bi-code-slash"></i>
@@ -778,9 +1204,7 @@
 
             <p>
               Sou um profissional da área de programação focado em desenvolvimento de interfaces,
-              automações, scripts e soluções digitais de alto impacto. Este portfólio foi criado com
-              estética dark, detalhes azuis, visual metálico, sombras intensas, degradês sofisticados
-              e animações suaves para transmitir tecnologia, performance e elegância.
+              automações, scripts e soluções digitais de alto impacto. Este portfólio foi pensado como currículo visual, com foco em clareza, hierarquia de informação, projetos reais e leitura rápida para recrutadores e clientes.
             </p>
 
             <div class="hero-actions">
@@ -850,30 +1274,38 @@
             <div class="skill-grid">
               <div class="skill-card" data-aos="flip-left">
                 <div class="skill-icon"><i class="bi bi-diagram-3"></i></div>
-                <h3 class="card-title-custom">N8N</h3>
-                <p class="card-text-custom">Criação de fluxos de automação, integrações e otimização de processos.</p>
-                <div class="progress-custom"><div class="progress-bar-custom" style="width: 88%"></div></div>
+                <div class="card-content">
+                  <h3 class="card-title-custom">N8N</h3>
+                  <p class="card-text-custom">Criação de fluxos de automação, integrações e otimização de processos.</p>
+                  <div class="card-end"><div class="progress-custom"><div class="progress-bar-custom" style="width: 88%"></div></div></div>
+                </div>
               </div>
 
               <div class="skill-card" data-aos="flip-left" data-aos-delay="100">
                 <div class="skill-icon"><i class="bi bi-filetype-py"></i></div>
-                <h3 class="card-title-custom">Python</h3>
-                <p class="card-text-custom">Scripts, automações, manipulação de dados e desenvolvimento back-end.</p>
-                <div class="progress-custom"><div class="progress-bar-custom" style="width: 92%"></div></div>
+                <div class="card-content">
+                  <h3 class="card-title-custom">Python</h3>
+                  <p class="card-text-custom">Scripts, automações, manipulação de dados e desenvolvimento back-end.</p>
+                  <div class="card-end"><div class="progress-custom"><div class="progress-bar-custom" style="width: 92%"></div></div></div>
+                </div>
               </div>
 
               <div class="skill-card" data-aos="flip-left" data-aos-delay="200">
                 <div class="skill-icon"><i class="bi bi-window"></i></div>
-                <h3 class="card-title-custom">Windows PA</h3>
-                <p class="card-text-custom">Suporte, produtividade, administração de ambiente e rotinas técnicas.</p>
-                <div class="progress-custom"><div class="progress-bar-custom" style="width: 83%"></div></div>
+                <div class="card-content">
+                  <h3 class="card-title-custom">Windows PA</h3>
+                  <p class="card-text-custom">Suporte, produtividade, administração de ambiente e rotinas técnicas.</p>
+                  <div class="card-end"><div class="progress-custom"><div class="progress-bar-custom" style="width: 83%"></div></div></div>
+                </div>
               </div>
 
               <div class="skill-card" data-aos="flip-left" data-aos-delay="300">
                 <div class="skill-icon"><i class="bi bi-code-square"></i></div>
-                <h3 class="card-title-custom">Front-end</h3>
-                <p class="card-text-custom">HTML, CSS, JavaScript, Bootstrap e interfaces modernas responsivas.</p>
-                <div class="progress-custom"><div class="progress-bar-custom" style="width: 95%"></div></div>
+                <div class="card-content">
+                  <h3 class="card-title-custom">Front-end</h3>
+                  <p class="card-text-custom">HTML, CSS, JavaScript, Bootstrap e interfaces modernas responsivas.</p>
+                  <div class="card-end"><div class="progress-custom"><div class="progress-bar-custom" style="width: 95%"></div></div></div>
+                </div>
               </div>
             </div>
           </div>
@@ -909,35 +1341,144 @@
         <section id="projetos" class="section-space">
           <div class="section-card" data-aos="zoom-in" data-aos-duration="1000">
             <h2 class="section-title metal-text">Projetos</h2>
-            <p class="section-subtitle">Alguns exemplos de trabalhos e soluções que representariam meu portfólio.</p>
+            <p class="section-subtitle">Filtre por categoria e use os botões para ver demo, código e detalhes de cada projeto.</p>
 
-            <div class="project-grid">
-              <div class="project-card" data-aos="fade-up" data-aos-delay="0">
-                <div class="project-icon"><i class="bi bi-globe2"></i></div>
-                <h3 class="card-title-custom">Site Profissional Responsivo</h3>
-                <p class="card-text-custom">Desenvolvimento de landing page moderna com foco em apresentação, conversão e design premium.</p>
-                <span class="project-badge">HTML • CSS • JS • Bootstrap</span>
+            <div class="project-filter">
+              <button class="project-filter-btn active" data-filter="all" type="button">Todos</button>
+              <button class="project-filter-btn" data-filter="n8n" type="button">N8N</button>
+              <button class="project-filter-btn" data-filter="pa" type="button">Automações PA</button>
+              <button class="project-filter-btn" data-filter="python" type="button">Python</button>
+              <button class="project-filter-btn" data-filter="sites" type="button">Sites Responsivos</button>
+              <button class="project-filter-btn" data-filter="wordpress" type="button">WordPress</button>
+            </div>
+
+            <div class="project-grid" id="projectGrid">
+              <div class="project-card" data-category="sites" data-aos="fade-up">
+                <div class="card-content">
+                  <div class="project-icon"><i class="bi bi-globe2"></i></div>
+                  <h3 class="card-title-custom">Landing Page de Alta Conversão</h3>
+                  <p class="card-text-custom">Site responsivo com foco em velocidade, SEO técnico e estrutura preparada para geração de leads.</p>
+                  <div class="card-end">
+                    <span class="project-badge">Sites Responsivos • HTML • CSS • JS</span>
+                    <div class="project-actions">
+                      <a class="project-btn primary" href="#" target="_blank">Live Demo</a>
+                      <a class="project-btn secondary" href="#" target="_blank">Código</a>
+                      <button class="project-btn info" type="button" data-project-title="Landing Page de Alta Conversão" data-project-description="Projeto pensado para performance e marketing: layout mobile-first, CTA estratégico e otimização de carregamento com foco em geração de leads qualificados.">Saiba Mais</button>
+                    </div>
+                  </div>
+                </div>
               </div>
 
-              <div class="project-card" data-aos="fade-up" data-aos-delay="100">
-                <div class="project-icon"><i class="bi bi-robot"></i></div>
-                <h3 class="card-title-custom">Automação com N8N</h3>
-                <p class="card-text-custom">Fluxos para automatizar tarefas, conectar APIs, organizar processos e reduzir retrabalho.</p>
-                <span class="project-badge">N8N • APIs • Automação</span>
+              <div class="project-card" data-category="n8n" data-aos="fade-up" data-aos-delay="50">
+                <div class="card-content">
+                  <div class="project-icon"><i class="bi bi-diagram-3-fill"></i></div>
+                  <h3 class="card-title-custom">Central de Fluxos N8N</h3>
+                  <p class="card-text-custom">Automação de cadastro, atualização de CRM e notificações automáticas integrando APIs e planilhas.</p>
+                  <div class="card-end">
+                    <span class="project-badge">N8N • APIs • Webhooks</span>
+                    <div class="project-actions">
+                      <a class="project-btn primary" href="#" target="_blank">Live Demo</a>
+                      <a class="project-btn secondary" href="#" target="_blank">Código</a>
+                      <button class="project-btn info" type="button" data-project-title="Central de Fluxos N8N" data-project-description="Pipeline completo com webhooks, validação de dados, roteamento por regras de negócio e alertas em tempo real para equipes comerciais.">Saiba Mais</button>
+                    </div>
+                  </div>
+                </div>
               </div>
 
-              <div class="project-card" data-aos="fade-up" data-aos-delay="200">
-                <div class="project-icon"><i class="bi bi-terminal"></i></div>
-                <h3 class="card-title-custom">Scripts Inteligentes em Python</h3>
-                <p class="card-text-custom">Ferramentas para tratamento de dados, automações locais e rotinas otimizadas.</p>
-                <span class="project-badge">Python • Scripts • Dados</span>
+              <div class="project-card" data-category="python" data-aos="fade-up" data-aos-delay="100">
+                <div class="card-content">
+                  <div class="project-icon"><i class="bi bi-filetype-py"></i></div>
+                  <h3 class="card-title-custom">Pipeline de Dados com Python</h3>
+                  <p class="card-text-custom">Scripts para coleta, limpeza e consolidação de dados com geração automática de relatórios e alertas.</p>
+                  <div class="card-end">
+                    <span class="project-badge">Python • Pandas • Automação</span>
+                    <div class="project-actions">
+                      <a class="project-btn primary" href="#" target="_blank">Live Demo</a>
+                      <a class="project-btn secondary" href="#" target="_blank">Código</a>
+                      <button class="project-btn info" type="button" data-project-title="Pipeline de Dados com Python" data-project-description="Rotina ETL com tratamento de inconsistências, geração de dashboards e envio de indicadores por e-mail para acompanhamento diário.">Saiba Mais</button>
+                    </div>
+                  </div>
+                </div>
               </div>
 
-              <div class="project-card" data-aos="fade-up" data-aos-delay="300">
-                <div class="project-icon"><i class="bi bi-windows"></i></div>
-                <h3 class="card-title-custom">Soluções para Windows PA</h3>
-                <p class="card-text-custom">Configuração, produtividade, manutenção e melhorias em ambientes Windows.</p>
-                <span class="project-badge">Windows • Performance • Suporte</span>
+              <div class="project-card" data-category="pa" data-aos="fade-up" data-aos-delay="150">
+                <div class="card-content">
+                  <div class="project-icon"><i class="bi bi-windows"></i></div>
+                  <h3 class="card-title-custom">Automações com Windows PA</h3>
+                  <p class="card-text-custom">Rotinas para tarefas repetitivas com controle de execução, logs e melhorias de produtividade operacional.</p>
+                  <div class="card-end">
+                    <span class="project-badge">Windows PA • Scripts • Produtividade</span>
+                    <div class="project-actions">
+                      <a class="project-btn primary" href="#" target="_blank">Live Demo</a>
+                      <a class="project-btn secondary" href="#" target="_blank">Código</a>
+                      <button class="project-btn info" type="button" data-project-title="Automações com Windows PA" data-project-description="Automação de tarefas administrativas com padronização de processos, rastreabilidade por logs e redução de erros operacionais.">Saiba Mais</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="project-card" data-category="wordpress" data-aos="fade-up" data-aos-delay="200">
+                <div class="card-content">
+                  <div class="project-icon"><i class="bi bi-wordpress"></i></div>
+                  <h3 class="card-title-custom">Portal Institucional em WordPress</h3>
+                  <p class="card-text-custom">Projeto com tema customizado, blocos reutilizáveis e otimizações para desempenho e manutenção simplificada.</p>
+                  <div class="card-end">
+                    <span class="project-badge">WordPress • Elementor • SEO</span>
+                    <div class="project-actions">
+                      <a class="project-btn primary" href="#" target="_blank">Live Demo</a>
+                      <a class="project-btn secondary" href="#" target="_blank">Código</a>
+                      <button class="project-btn info" type="button" data-project-title="Portal Institucional em WordPress" data-project-description="Site modular para atualização rápida de conteúdo, com páginas otimizadas para SEO e estrutura preparada para crescimento.">Saiba Mais</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="project-card" data-category="n8n" data-aos="fade-up" data-aos-delay="250">
+                <div class="card-content">
+                  <div class="project-icon"><i class="bi bi-robot"></i></div>
+                  <h3 class="card-title-custom">Bot de Atendimento Integrado</h3>
+                  <p class="card-text-custom">Fluxo com triagem automática, registro de chamados e atualização de status em múltiplos canais.</p>
+                  <div class="card-end">
+                    <span class="project-badge">N8N • Atendimento • Integração</span>
+                    <div class="project-actions">
+                      <a class="project-btn primary" href="#" target="_blank">Live Demo</a>
+                      <a class="project-btn secondary" href="#" target="_blank">Código</a>
+                      <button class="project-btn info" type="button" data-project-title="Bot de Atendimento Integrado" data-project-description="Orquestração entre chat, CRM e base de tickets para acelerar resposta ao cliente e reduzir gargalos de atendimento.">Saiba Mais</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="project-card" data-category="sites" data-aos="fade-up" data-aos-delay="300">
+                <div class="card-content">
+                  <div class="project-icon"><i class="bi bi-phone"></i></div>
+                  <h3 class="card-title-custom">Site One Page para Serviço Local</h3>
+                  <p class="card-text-custom">Página única com formulário inteligente, mapa e prova social para aumentar conversões em dispositivos móveis.</p>
+                  <div class="card-end">
+                    <span class="project-badge">Site Responsivo • UX • Conversão</span>
+                    <div class="project-actions">
+                      <a class="project-btn primary" href="#" target="_blank">Live Demo</a>
+                      <a class="project-btn secondary" href="#" target="_blank">Código</a>
+                      <button class="project-btn info" type="button" data-project-title="Site One Page para Serviço Local" data-project-description="Estrutura enxuta e orientada à conversão para negócios locais, com carregamento rápido e melhor posicionamento em buscas locais.">Saiba Mais</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="project-card" data-category="python" data-aos="fade-up" data-aos-delay="350">
+                <div class="card-content">
+                  <div class="project-icon"><i class="bi bi-bar-chart-line"></i></div>
+                  <h3 class="card-title-custom">Dashboard Financeiro Automatizado</h3>
+                  <p class="card-text-custom">Consolidação de extratos, categorização de despesas e relatório visual para tomada de decisão mensal.</p>
+                  <div class="card-end">
+                    <span class="project-badge">Python • ETL • Relatórios</span>
+                    <div class="project-actions">
+                      <a class="project-btn primary" href="#" target="_blank">Live Demo</a>
+                      <a class="project-btn secondary" href="#" target="_blank">Código</a>
+                      <button class="project-btn info" type="button" data-project-title="Dashboard Financeiro Automatizado" data-project-description="Automação para transformar dados financeiros em indicadores claros, com exportação para PDF e alertas de variação de custos.">Saiba Mais</button>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -1030,6 +1571,19 @@
           </div>
         </section>
 
+
+        <div class="modal fade" id="projectInfoModal" tabindex="-1" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="projectInfoTitle">Detalhes do Projeto</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body" id="projectInfoDescription"></div>
+            </div>
+          </div>
+        </div>
+
         <p class="footer-note">© 2026 • Portfólio de Programação • Tema dark com detalhes azuis</p>
       </main>
     </div>
@@ -1107,6 +1661,88 @@
     }, { threshold: 0.35 });
 
     document.querySelectorAll('.reveal-up').forEach(el => observer.observe(el));
+
+    const themeButtons = [document.getElementById('themeToggleDesktop'), document.getElementById('themeToggleMobile')].filter(Boolean);
+    const savedTheme = localStorage.getItem('portfolio-theme');
+
+    if (savedTheme === 'light') {
+      document.body.classList.add('light-theme');
+    }
+
+    function syncThemeButtons() {
+      const isLight = document.body.classList.contains('light-theme');
+      themeButtons.forEach(btn => {
+        btn.innerHTML = isLight
+          ? '<i class="bi bi-moon-stars"></i><span>Modo Dark</span>'
+          : '<i class="bi bi-sun"></i><span>Modo Light</span>';
+      });
+    }
+
+    themeButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.body.classList.toggle('light-theme');
+        const isLight = document.body.classList.contains('light-theme');
+        localStorage.setItem('portfolio-theme', isLight ? 'light' : 'dark');
+        syncThemeButtons();
+      });
+    });
+
+    const projectFilterButtons = document.querySelectorAll('.project-filter-btn');
+    const projectCards = document.querySelectorAll('.project-card');
+    const projectInfoModalEl = document.getElementById('projectInfoModal');
+    const projectInfoTitle = document.getElementById('projectInfoTitle');
+    const projectInfoDescription = document.getElementById('projectInfoDescription');
+    const projectInfoModal = projectInfoModalEl ? new bootstrap.Modal(projectInfoModalEl) : null;
+
+    document.querySelectorAll('.project-btn.info').forEach(button => {
+      button.addEventListener('click', () => {
+        if (!projectInfoModal) return;
+        projectInfoTitle.textContent = button.dataset.projectTitle || 'Detalhes do Projeto';
+        projectInfoDescription.textContent = button.dataset.projectDescription || 'Sem descrição adicional.';
+        projectInfoModal.show();
+      });
+    });
+
+    function applyProjectFilter(filter) {
+      projectCards.forEach(card => {
+        const match = filter === 'all' || card.dataset.category === filter;
+        card.classList.toggle('hidden', !match);
+      });
+      setTimeout(equalizeCardHeights, 40);
+    }
+
+    projectFilterButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        projectFilterButtons.forEach(btn => btn.classList.remove('active'));
+        button.classList.add('active');
+        applyProjectFilter(button.dataset.filter);
+      });
+    });
+
+    function equalizeGroup(selector) {
+      const cards = [...document.querySelectorAll(selector)].filter(card => !card.classList.contains('hidden'));
+      cards.forEach(card => card.style.minHeight = '0px');
+      if (!cards.length) return;
+      const maxHeight = Math.max(...cards.map(card => card.offsetHeight));
+      cards.forEach(card => card.style.minHeight = `${maxHeight}px`);
+    }
+
+    function equalizeCardHeights() {
+      equalizeGroup('.skill-grid .skill-card');
+      equalizeGroup('.project-grid .project-card');
+      equalizeGroup('.formation-grid .formation-card');
+      equalizeGroup('.extra-grid .extra-card');
+      equalizeGroup('.contact-list .contact-card');
+      equalizeGroup('.timeline .timeline-card');
+    }
+
+    window.addEventListener('resize', equalizeCardHeights);
+    window.addEventListener('load', () => {
+      syncThemeButtons();
+      applyProjectFilter('all');
+      equalizeCardHeights();
+    });
+
   </script>
 </body>
 </html>
