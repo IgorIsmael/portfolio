@@ -39,6 +39,20 @@
       --radius-lg: 22px;
     }
 
+    body.light-theme {
+      --bg-main: #f2f7ff;
+      --bg-soft: #dcecff;
+      --bg-card: rgba(255, 255, 255, 0.92);
+      --border: rgba(37, 99, 235, 0.20);
+      --text: #0f172a;
+      --text-soft: #334155;
+      --metal-1: #0f172a;
+      --metal-2: #1d4ed8;
+      --metal-3: #334155;
+      --shadow-blue: 0 0 12px rgba(37, 99, 235, 0.12);
+      --shadow-strong: 0 10px 24px rgba(15, 23, 42, 0.14);
+    }
+
     * {
       margin: 0;
       padding: 0;
@@ -51,9 +65,10 @@
       background:
         radial-gradient(circle at 18% 12%, rgba(59,130,246,.10), transparent 34%),
         radial-gradient(circle at 82% 86%, rgba(56,189,248,.08), transparent 30%),
-        linear-gradient(135deg, #02030a 0%, #060d1d 52%, #02050f 100%);
+        linear-gradient(135deg, var(--bg-main) 0%, var(--bg-soft) 52%, #02050f 100%);
       color: var(--text);
       overflow-x: hidden;
+      transition: background .35s ease, color .25s ease;
     }
 
     body::before {
@@ -84,6 +99,17 @@
     @keyframes pulseGlow {
       0%, 100% { transform: scale(1); opacity: .7; }
       50% { transform: scale(1.08); opacity: .85; }
+    }
+
+    body.light-theme::before {
+      background:
+        linear-gradient(120deg, rgba(37,99,235,.06), transparent 24%, transparent 78%, rgba(148,163,184,.08)),
+        repeating-linear-gradient(90deg, rgba(37,99,235,.04) 0 1px, transparent 1px 160px);
+    }
+
+    body.light-theme::after {
+      background: radial-gradient(circle, rgba(37,99,235,.22), transparent 72%);
+      filter: blur(24px);
     }
 
     .app-shell {
@@ -484,13 +510,15 @@
     .contact-card {
       padding: 22px;
       border-radius: 22px;
-      background: linear-gradient(145deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+      background: linear-gradient(145deg, color-mix(in srgb, var(--bg-card) 88%, white 12%), var(--bg-card));
       border: 1px solid rgba(147,197,253,.14);
       box-shadow: inset 0 1px 0 rgba(255,255,255,.05);
       transition: .35s ease;
       height: 100%;
       position: relative;
       z-index: 1;
+      display: flex;
+      flex-direction: column;
     }
 
     .skill-card:hover,
@@ -657,6 +685,64 @@
       border-radius: 14px;
     }
 
+    .theme-toggle {
+      border-radius: 14px;
+      border: 1px solid rgba(147,197,253,.28);
+      background: rgba(255,255,255,.05);
+      color: var(--text);
+      font-weight: 600;
+      padding: 8px 14px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: .25s ease;
+    }
+
+    .theme-toggle:hover {
+      border-color: rgba(96,165,250,.5);
+      transform: translateY(-2px);
+    }
+
+    .card-content {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      gap: 10px;
+    }
+
+    .card-end {
+      margin-top: auto;
+      padding-top: 8px;
+    }
+
+    .project-filter {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+
+    .project-filter-btn {
+      border-radius: 999px;
+      border: 1px solid rgba(147,197,253,.3);
+      background: rgba(255,255,255,.04);
+      color: var(--text);
+      padding: 8px 14px;
+      font-size: .86rem;
+      font-weight: 600;
+      transition: .2s ease;
+    }
+
+    .project-filter-btn.active,
+    .project-filter-btn:hover {
+      background: linear-gradient(145deg, rgba(59,130,246,.25), rgba(255,255,255,.07));
+      border-color: rgba(59,130,246,.45);
+    }
+
+    .project-card.hidden {
+      display: none;
+    }
+
     @media (max-width: 991.98px) {
       .sidebar {
         display: none;
@@ -712,9 +798,12 @@
     <div>
       <strong class="metal-text">Meu Portfólio</strong>
     </div>
-    <button class="btn btn-outline-light btn-sm" data-bs-toggle="offcanvas" data-bs-target="#mobileSidebar">
-      <i class="bi bi-list"></i>
-    </button>
+    <div class="d-flex gap-2">
+      <button class="theme-toggle btn-sm" id="themeToggleMobile" type="button"><i class="bi bi-sun"></i><span>Modo Light</span></button>
+      <button class="btn btn-outline-light btn-sm" data-bs-toggle="offcanvas" data-bs-target="#mobileSidebar">
+        <i class="bi bi-list"></i>
+      </button>
+    </div>
   </div>
 
   <div class="offcanvas offcanvas-start text-bg-dark" tabindex="-1" id="mobileSidebar">
@@ -742,6 +831,9 @@
         <!-- Partial: Sidebar -->
         <div class="sidebar-partial">
           <div class="w-100 text-center">
+            <div class="d-flex justify-content-center mb-3">
+              <button class="theme-toggle" id="themeToggleDesktop" type="button"><i class="bi bi-sun"></i><span>Modo Light</span></button>
+            </div>
             <div class="profile-photo mx-auto">
               <div class="profile-photo-inner">
                 <i class="bi bi-code-slash"></i>
@@ -870,30 +962,38 @@
             <div class="skill-grid">
               <div class="skill-card" data-aos="flip-left">
                 <div class="skill-icon"><i class="bi bi-diagram-3"></i></div>
-                <h3 class="card-title-custom">N8N</h3>
-                <p class="card-text-custom">Criação de fluxos de automação, integrações e otimização de processos.</p>
-                <div class="progress-custom"><div class="progress-bar-custom" style="width: 88%"></div></div>
+                <div class="card-content">
+                  <h3 class="card-title-custom">N8N</h3>
+                  <p class="card-text-custom">Criação de fluxos de automação, integrações e otimização de processos.</p>
+                  <div class="card-end"><div class="progress-custom"><div class="progress-bar-custom" style="width: 88%"></div></div></div>
+                </div>
               </div>
 
               <div class="skill-card" data-aos="flip-left" data-aos-delay="100">
                 <div class="skill-icon"><i class="bi bi-filetype-py"></i></div>
-                <h3 class="card-title-custom">Python</h3>
-                <p class="card-text-custom">Scripts, automações, manipulação de dados e desenvolvimento back-end.</p>
-                <div class="progress-custom"><div class="progress-bar-custom" style="width: 92%"></div></div>
+                <div class="card-content">
+                  <h3 class="card-title-custom">Python</h3>
+                  <p class="card-text-custom">Scripts, automações, manipulação de dados e desenvolvimento back-end.</p>
+                  <div class="card-end"><div class="progress-custom"><div class="progress-bar-custom" style="width: 92%"></div></div></div>
+                </div>
               </div>
 
               <div class="skill-card" data-aos="flip-left" data-aos-delay="200">
                 <div class="skill-icon"><i class="bi bi-window"></i></div>
-                <h3 class="card-title-custom">Windows PA</h3>
-                <p class="card-text-custom">Suporte, produtividade, administração de ambiente e rotinas técnicas.</p>
-                <div class="progress-custom"><div class="progress-bar-custom" style="width: 83%"></div></div>
+                <div class="card-content">
+                  <h3 class="card-title-custom">Windows PA</h3>
+                  <p class="card-text-custom">Suporte, produtividade, administração de ambiente e rotinas técnicas.</p>
+                  <div class="card-end"><div class="progress-custom"><div class="progress-bar-custom" style="width: 83%"></div></div></div>
+                </div>
               </div>
 
               <div class="skill-card" data-aos="flip-left" data-aos-delay="300">
                 <div class="skill-icon"><i class="bi bi-code-square"></i></div>
-                <h3 class="card-title-custom">Front-end</h3>
-                <p class="card-text-custom">HTML, CSS, JavaScript, Bootstrap e interfaces modernas responsivas.</p>
-                <div class="progress-custom"><div class="progress-bar-custom" style="width: 95%"></div></div>
+                <div class="card-content">
+                  <h3 class="card-title-custom">Front-end</h3>
+                  <p class="card-text-custom">HTML, CSS, JavaScript, Bootstrap e interfaces modernas responsivas.</p>
+                  <div class="card-end"><div class="progress-custom"><div class="progress-bar-custom" style="width: 95%"></div></div></div>
+                </div>
               </div>
             </div>
           </div>
@@ -929,35 +1029,70 @@
         <section id="projetos" class="section-space">
           <div class="section-card" data-aos="zoom-in" data-aos-duration="1000">
             <h2 class="section-title metal-text">Projetos</h2>
-            <p class="section-subtitle">Alguns exemplos de trabalhos e soluções que representariam meu portfólio.</p>
+            <p class="section-subtitle">Filtre por categoria para visualizar apenas os projetos que você quer mostrar.</p>
 
-            <div class="project-grid">
-              <div class="project-card" data-aos="fade-up" data-aos-delay="0">
-                <div class="project-icon"><i class="bi bi-globe2"></i></div>
-                <h3 class="card-title-custom">Site Profissional Responsivo</h3>
-                <p class="card-text-custom">Desenvolvimento de landing page moderna com foco em apresentação, conversão e design premium.</p>
-                <span class="project-badge">HTML • CSS • JS • Bootstrap</span>
+            <div class="project-filter">
+              <button class="project-filter-btn active" data-filter="all" type="button">Todos</button>
+              <button class="project-filter-btn" data-filter="n8n" type="button">N8N</button>
+              <button class="project-filter-btn" data-filter="pa" type="button">Automações PA</button>
+              <button class="project-filter-btn" data-filter="python" type="button">Python</button>
+              <button class="project-filter-btn" data-filter="sites" type="button">Sites Responsivos</button>
+              <button class="project-filter-btn" data-filter="wordpress" type="button">WordPress</button>
+            </div>
+
+            <div class="project-grid" id="projectGrid">
+              <div class="project-card" data-category="sites" data-aos="fade-up">
+                <div class="card-content">
+                  <div class="project-icon"><i class="bi bi-globe2"></i></div>
+                  <h3 class="card-title-custom">Landing Page de Alta Conversão</h3>
+                  <p class="card-text-custom">Site responsivo com foco em velocidade, SEO técnico e estrutura preparada para geração de leads.</p>
+                  <div class="card-end"><span class="project-badge">Sites Responsivos • HTML • CSS • JS</span></div>
+                </div>
               </div>
 
-              <div class="project-card" data-aos="fade-up" data-aos-delay="100">
-                <div class="project-icon"><i class="bi bi-robot"></i></div>
-                <h3 class="card-title-custom">Automação com N8N</h3>
-                <p class="card-text-custom">Fluxos para automatizar tarefas, conectar APIs, organizar processos e reduzir retrabalho.</p>
-                <span class="project-badge">N8N • APIs • Automação</span>
+              <div class="project-card" data-category="n8n" data-aos="fade-up" data-aos-delay="50">
+                <div class="card-content">
+                  <div class="project-icon"><i class="bi bi-diagram-3-fill"></i></div>
+                  <h3 class="card-title-custom">Central de Fluxos N8N</h3>
+                  <p class="card-text-custom">Automação de cadastro, atualização de CRM e notificações automáticas integrando APIs e planilhas.</p>
+                  <div class="card-end"><span class="project-badge">N8N • APIs • Webhooks</span></div>
+                </div>
               </div>
 
-              <div class="project-card" data-aos="fade-up" data-aos-delay="200">
-                <div class="project-icon"><i class="bi bi-terminal"></i></div>
-                <h3 class="card-title-custom">Scripts Inteligentes em Python</h3>
-                <p class="card-text-custom">Ferramentas para tratamento de dados, automações locais e rotinas otimizadas.</p>
-                <span class="project-badge">Python • Scripts • Dados</span>
+              <div class="project-card" data-category="python" data-aos="fade-up" data-aos-delay="100">
+                <div class="card-content">
+                  <div class="project-icon"><i class="bi bi-filetype-py"></i></div>
+                  <h3 class="card-title-custom">Pipeline de Dados com Python</h3>
+                  <p class="card-text-custom">Scripts para coleta, limpeza e consolidação de dados com geração automática de relatórios e alertas.</p>
+                  <div class="card-end"><span class="project-badge">Python • Pandas • Automação</span></div>
+                </div>
               </div>
 
-              <div class="project-card" data-aos="fade-up" data-aos-delay="300">
-                <div class="project-icon"><i class="bi bi-windows"></i></div>
-                <h3 class="card-title-custom">Soluções para Windows PA</h3>
-                <p class="card-text-custom">Configuração, produtividade, manutenção e melhorias em ambientes Windows.</p>
-                <span class="project-badge">Windows • Performance • Suporte</span>
+              <div class="project-card" data-category="pa" data-aos="fade-up" data-aos-delay="150">
+                <div class="card-content">
+                  <div class="project-icon"><i class="bi bi-windows"></i></div>
+                  <h3 class="card-title-custom">Automações com Windows PA</h3>
+                  <p class="card-text-custom">Rotinas para tarefas repetitivas com controle de execução, logs e melhorias de produtividade operacional.</p>
+                  <div class="card-end"><span class="project-badge">Windows PA • Scripts • Produtividade</span></div>
+                </div>
+              </div>
+
+              <div class="project-card" data-category="wordpress" data-aos="fade-up" data-aos-delay="200">
+                <div class="card-content">
+                  <div class="project-icon"><i class="bi bi-wordpress"></i></div>
+                  <h3 class="card-title-custom">Portal Institucional em WordPress</h3>
+                  <p class="card-text-custom">Projeto com tema customizado, blocos reutilizáveis e otimizações para desempenho e manutenção simplificada.</p>
+                  <div class="card-end"><span class="project-badge">WordPress • Elementor • SEO</span></div>
+                </div>
+              </div>
+
+              <div class="project-card" data-category="n8n" data-aos="fade-up" data-aos-delay="250">
+                <div class="card-content">
+                  <div class="project-icon"><i class="bi bi-robot"></i></div>
+                  <h3 class="card-title-custom">Bot de Atendimento Integrado</h3>
+                  <p class="card-text-custom">Fluxo com triagem automática, registro de chamados e atualização de status em múltiplos canais.</p>
+                  <div class="card-end"><span class="project-badge">N8N • Atendimento • Integração</span></div>
+                </div>
               </div>
             </div>
           </div>
@@ -1127,6 +1262,75 @@
     }, { threshold: 0.35 });
 
     document.querySelectorAll('.reveal-up').forEach(el => observer.observe(el));
+
+    const themeButtons = [document.getElementById('themeToggleDesktop'), document.getElementById('themeToggleMobile')].filter(Boolean);
+    const savedTheme = localStorage.getItem('portfolio-theme');
+
+    if (savedTheme === 'light') {
+      document.body.classList.add('light-theme');
+    }
+
+    function syncThemeButtons() {
+      const isLight = document.body.classList.contains('light-theme');
+      themeButtons.forEach(btn => {
+        btn.innerHTML = isLight
+          ? '<i class="bi bi-moon-stars"></i><span>Modo Dark</span>'
+          : '<i class="bi bi-sun"></i><span>Modo Light</span>';
+      });
+    }
+
+    themeButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.body.classList.toggle('light-theme');
+        const isLight = document.body.classList.contains('light-theme');
+        localStorage.setItem('portfolio-theme', isLight ? 'light' : 'dark');
+        syncThemeButtons();
+      });
+    });
+
+    const projectFilterButtons = document.querySelectorAll('.project-filter-btn');
+    const projectCards = document.querySelectorAll('.project-card');
+
+    function applyProjectFilter(filter) {
+      projectCards.forEach(card => {
+        const match = filter === 'all' || card.dataset.category === filter;
+        card.classList.toggle('hidden', !match);
+      });
+      setTimeout(equalizeCardHeights, 40);
+    }
+
+    projectFilterButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        projectFilterButtons.forEach(btn => btn.classList.remove('active'));
+        button.classList.add('active');
+        applyProjectFilter(button.dataset.filter);
+      });
+    });
+
+    function equalizeGroup(selector) {
+      const cards = [...document.querySelectorAll(selector)].filter(card => !card.classList.contains('hidden'));
+      cards.forEach(card => card.style.minHeight = '0px');
+      if (!cards.length) return;
+      const maxHeight = Math.max(...cards.map(card => card.offsetHeight));
+      cards.forEach(card => card.style.minHeight = `${maxHeight}px`);
+    }
+
+    function equalizeCardHeights() {
+      equalizeGroup('.skill-grid .skill-card');
+      equalizeGroup('.project-grid .project-card');
+      equalizeGroup('.formation-grid .formation-card');
+      equalizeGroup('.extra-grid .extra-card');
+      equalizeGroup('.contact-list .contact-card');
+      equalizeGroup('.timeline .timeline-card');
+    }
+
+    window.addEventListener('resize', equalizeCardHeights);
+    window.addEventListener('load', () => {
+      syncThemeButtons();
+      applyProjectFilter('all');
+      equalizeCardHeights();
+    });
+
   </script>
 </body>
 </html>
