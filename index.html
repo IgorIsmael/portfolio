@@ -1,0 +1,1112 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfólio | Programação</title>
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+
+  <!-- AOS -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-main: #050816;
+      --bg-soft: #0b1120;
+      --bg-card: rgba(13, 21, 45, 0.72);
+      --border: rgba(91, 168, 255, 0.22);
+      --primary: #1d4ed8;
+      --primary-2: #2563eb;
+      --primary-3: #60a5fa;
+      --text: #e5f0ff;
+      --text-soft: #9fb6d9;
+      --metal-1: #dbe7ff;
+      --metal-2: #88a4cf;
+      --metal-3: #435a84;
+      --shadow-blue: 0 0 25px rgba(59, 130, 246, 0.22);
+      --shadow-strong: 0 18px 45px rgba(0, 0, 0, 0.45);
+      --radius-xl: 28px;
+      --radius-lg: 22px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(59,130,246,.12), transparent 28%),
+        radial-gradient(circle at bottom right, rgba(96,165,250,.10), transparent 22%),
+        linear-gradient(135deg, #030712 0%, #071120 45%, #02050d 100%);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background:
+        linear-gradient(115deg, rgba(255,255,255,.03), transparent 20%, transparent 80%, rgba(255,255,255,.02)),
+        repeating-linear-gradient(90deg, rgba(255,255,255,.015) 0 1px, transparent 1px 120px);
+      pointer-events: none;
+      z-index: -2;
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      width: 500px;
+      height: 500px;
+      right: -180px;
+      top: -120px;
+      background: radial-gradient(circle, rgba(59,130,246,.18), transparent 70%);
+      filter: blur(25px);
+      pointer-events: none;
+      z-index: -1;
+      animation: pulseGlow 6s infinite ease-in-out;
+    }
+
+    @keyframes pulseGlow {
+      0%, 100% { transform: scale(1); opacity: .7; }
+      50% { transform: scale(1.15); opacity: 1; }
+    }
+
+    .app-shell {
+      min-height: 100vh;
+    }
+
+    .sidebar {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      padding: 28px 20px;
+      background: linear-gradient(180deg, rgba(6, 12, 28, 0.95), rgba(8, 14, 35, 0.85));
+      border-right: 1px solid rgba(147, 197, 253, 0.08);
+      backdrop-filter: blur(18px);
+      box-shadow: inset -1px 0 0 rgba(255,255,255,.04);
+    }
+
+    .sidebar-partial {
+      height: 100%;
+      border: 1px solid var(--border);
+      border-radius: 30px;
+      padding: 26px 18px;
+      background:
+        linear-gradient(145deg, rgba(255,255,255,.05), rgba(255,255,255,.01)),
+        linear-gradient(180deg, rgba(12, 20, 42, .78), rgba(9, 17, 36, .72));
+      box-shadow: var(--shadow-strong), inset 0 1px 0 rgba(255,255,255,.08), var(--shadow-blue);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .sidebar-partial::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(96,165,250,.12), transparent 30%, transparent 70%, rgba(255,255,255,.03));
+      pointer-events: none;
+    }
+
+    .profile-photo {
+      width: 128px;
+      height: 128px;
+      border-radius: 50%;
+      background:
+        linear-gradient(145deg, #102344, #091120),
+        linear-gradient(145deg, #fff, #6ea8ff);
+      padding: 4px;
+      box-shadow: 0 0 30px rgba(59,130,246,.35), inset 0 2px 10px rgba(255,255,255,.15);
+      animation: floatPhoto 4s ease-in-out infinite;
+      margin-bottom: 18px;
+    }
+
+    .profile-photo-inner {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(circle at top, #173055, #050816 70%);
+      font-size: 3rem;
+      color: var(--primary-3);
+      border: 1px solid rgba(255,255,255,.06);
+    }
+
+    @keyframes floatPhoto {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+
+    .metal-text {
+      background: linear-gradient(180deg, var(--metal-1), #c5d7f5 30%, #96b5df 50%, var(--metal-3) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 12px rgba(255,255,255,.05);
+    }
+
+    .sidebar-name {
+      font-size: 1.45rem;
+      font-weight: 800;
+      letter-spacing: .6px;
+      margin-bottom: 5px;
+    }
+
+    .sidebar-role {
+      font-size: .95rem;
+      color: var(--text-soft);
+      margin-bottom: 22px;
+    }
+
+    .social-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    .social-links a {
+      width: 46px;
+      height: 46px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 14px;
+      text-decoration: none;
+      color: #dcecff;
+      font-size: 1.2rem;
+      background:
+        linear-gradient(145deg, rgba(255,255,255,.08), rgba(255,255,255,.02)),
+        linear-gradient(145deg, #0b1730, #091121);
+      border: 1px solid rgba(147,197,253,.18);
+      box-shadow: 0 10px 25px rgba(0,0,0,.32), 0 0 0 rgba(59,130,246,0);
+      transition: .35s ease;
+    }
+
+    .social-links a:hover {
+      transform: translateY(-5px) scale(1.05);
+      color: white;
+      box-shadow: 0 14px 30px rgba(0,0,0,.45), 0 0 25px rgba(59,130,246,.28);
+      border-color: rgba(96,165,250,.45);
+    }
+
+    .divider-custom {
+      width: 100%;
+      height: 1px;
+      margin: 22px 0;
+      background: linear-gradient(to right, transparent, rgba(96,165,250,.65), transparent);
+      position: relative;
+    }
+
+    .divider-custom::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--primary);
+      box-shadow: 0 0 15px rgba(59,130,246,.6);
+    }
+
+    .sidebar-nav {
+      width: 100%;
+    }
+
+    .sidebar-nav a {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--text-soft);
+      padding: 12px 14px;
+      border-radius: 14px;
+      margin-bottom: 8px;
+      transition: .3s ease;
+      border: 1px solid transparent;
+    }
+
+    .sidebar-nav a:hover,
+    .sidebar-nav a.active {
+      color: #fff;
+      background: linear-gradient(90deg, rgba(59,130,246,.18), rgba(255,255,255,.03));
+      border-color: rgba(96,165,250,.16);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.04), 0 0 18px rgba(59,130,246,.12);
+      transform: translateX(4px);
+    }
+
+    .tag-stack {
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: center;
+      margin-top: 12px;
+    }
+
+    .tag-stack span {
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-size: .78rem;
+      color: #dcedff;
+      background: linear-gradient(145deg, rgba(59,130,246,.18), rgba(255,255,255,.04));
+      border: 1px solid rgba(147,197,253,.18);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.05);
+    }
+
+    .content-area {
+      padding: 34px;
+    }
+
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+    }
+
+    .glass-card,
+    .section-card {
+      background:
+        linear-gradient(145deg, rgba(255,255,255,.06), rgba(255,255,255,.015)),
+        linear-gradient(180deg, rgba(10, 18, 38, 0.85), rgba(6, 12, 26, 0.78));
+      border: 1px solid var(--border);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow-strong), inset 0 1px 0 rgba(255,255,255,.06), var(--shadow-blue);
+      backdrop-filter: blur(18px);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .glass-card::before,
+    .section-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(120deg, rgba(255,255,255,.05), transparent 25%, transparent 70%, rgba(96,165,250,.08));
+      pointer-events: none;
+    }
+
+    .hero-card {
+      padding: 44px;
+    }
+
+    .hero-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 16px;
+      border-radius: 999px;
+      background: linear-gradient(145deg, rgba(59,130,246,.16), rgba(255,255,255,.04));
+      border: 1px solid rgba(147,197,253,.22);
+      color: #dcecff;
+      margin-bottom: 22px;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.06);
+    }
+
+    .hero h1 {
+      font-size: clamp(2.4rem, 4vw, 4.7rem);
+      line-height: 1.05;
+      font-weight: 900;
+      margin-bottom: 18px;
+    }
+
+    .gradient-text {
+      background: linear-gradient(90deg, #ffffff, #8ec5ff, #3b82f6, #d5e8ff);
+      background-size: 220% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: shineText 5s linear infinite;
+    }
+
+    @keyframes shineText {
+      to { background-position: 220% center; }
+    }
+
+    .hero p {
+      font-size: 1.05rem;
+      color: var(--text-soft);
+      max-width: 760px;
+      line-height: 1.8;
+      margin-bottom: 28px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .btn-main,
+    .btn-outline-custom {
+      padding: 14px 26px;
+      border-radius: 16px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: .35s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      border: 1px solid transparent;
+    }
+
+    .btn-main {
+      color: #fff;
+      background: linear-gradient(135deg, #2563eb, #60a5fa 55%, #93c5fd);
+      box-shadow: 0 14px 30px rgba(37,99,235,.32);
+    }
+
+    .btn-main:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 34px rgba(37,99,235,.38), 0 0 25px rgba(96,165,250,.3);
+    }
+
+    .btn-outline-custom {
+      color: #d8ebff;
+      border-color: rgba(147,197,253,.25);
+      background: rgba(255,255,255,.03);
+    }
+
+    .btn-outline-custom:hover {
+      color: white;
+      transform: translateY(-4px);
+      border-color: rgba(96,165,250,.5);
+      box-shadow: 0 12px 24px rgba(0,0,0,.25), inset 0 1px 0 rgba(255,255,255,.06);
+    }
+
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 28px;
+    }
+
+    .stat-box {
+      padding: 20px;
+      border-radius: 20px;
+      border: 1px solid rgba(147,197,253,.14);
+      background: linear-gradient(145deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.05);
+      transition: .3s ease;
+    }
+
+    .stat-box:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 15px 28px rgba(0,0,0,.25), 0 0 24px rgba(59,130,246,.15);
+    }
+
+    .stat-number {
+      font-size: 1.65rem;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 5px;
+    }
+
+    .stat-label {
+      color: var(--text-soft);
+      font-size: .9rem;
+    }
+
+    .section-space {
+      padding: 34px 0 12px;
+    }
+
+    .section-card {
+      padding: 34px;
+      margin-bottom: 30px;
+    }
+
+    .section-title {
+      font-size: 2rem;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    .section-subtitle {
+      color: var(--text-soft);
+      margin-bottom: 26px;
+      font-size: 1rem;
+    }
+
+    .skill-grid,
+    .project-grid,
+    .extra-grid,
+    .formation-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 18px;
+    }
+
+    .skill-card,
+    .project-card,
+    .extra-card,
+    .formation-card,
+    .timeline-card,
+    .contact-card {
+      padding: 22px;
+      border-radius: 22px;
+      background: linear-gradient(145deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+      border: 1px solid rgba(147,197,253,.14);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.05);
+      transition: .35s ease;
+      height: 100%;
+    }
+
+    .skill-card:hover,
+    .project-card:hover,
+    .extra-card:hover,
+    .formation-card:hover,
+    .timeline-card:hover,
+    .contact-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 18px 35px rgba(0,0,0,.28), 0 0 22px rgba(59,130,246,.16);
+      border-color: rgba(96,165,250,.28);
+    }
+
+    .skill-icon,
+    .project-icon,
+    .extra-icon,
+    .formation-icon,
+    .contact-icon {
+      width: 58px;
+      height: 58px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 18px;
+      font-size: 1.4rem;
+      color: white;
+      background: linear-gradient(145deg, #2563eb, #60a5fa);
+      box-shadow: 0 12px 24px rgba(37,99,235,.28);
+      margin-bottom: 18px;
+    }
+
+    .card-title-custom {
+      font-size: 1.12rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: #f3f8ff;
+    }
+
+    .card-text-custom {
+      color: var(--text-soft);
+      line-height: 1.7;
+      font-size: .95rem;
+    }
+
+    .progress-custom {
+      background: rgba(255,255,255,.05);
+      height: 10px;
+      border-radius: 999px;
+      overflow: hidden;
+      margin-top: 14px;
+      box-shadow: inset 0 1px 3px rgba(0,0,0,.35);
+    }
+
+    .progress-bar-custom {
+      height: 100%;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #2563eb, #60a5fa, #bfdbfe);
+      box-shadow: 0 0 18px rgba(59,130,246,.32);
+      animation: fillBar 2.5s ease;
+    }
+
+    @keyframes fillBar {
+      from { width: 0; }
+    }
+
+    .timeline {
+      position: relative;
+      padding-left: 26px;
+    }
+
+    .timeline::before {
+      content: "";
+      position: absolute;
+      left: 6px;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, rgba(96,165,250,.9), rgba(96,165,250,.08));
+    }
+
+    .timeline-card {
+      position: relative;
+      margin-bottom: 18px;
+    }
+
+    .timeline-card::before {
+      content: "";
+      position: absolute;
+      left: -31px;
+      top: 28px;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: linear-gradient(145deg, #60a5fa, #dbeafe);
+      box-shadow: 0 0 18px rgba(59,130,246,.5);
+    }
+
+    .timeline-date {
+      font-size: .85rem;
+      color: var(--primary-3);
+      margin-bottom: 8px;
+      font-weight: 700;
+      letter-spacing: .5px;
+      text-transform: uppercase;
+    }
+
+    .project-badge {
+      display: inline-block;
+      margin-top: 14px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-size: .78rem;
+      color: #e9f3ff;
+      border: 1px solid rgba(147,197,253,.2);
+      background: rgba(59,130,246,.12);
+    }
+
+    .contact-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 18px;
+    }
+
+    .contact-link {
+      color: #dcecff;
+      text-decoration: none;
+      transition: .3s ease;
+    }
+
+    .contact-link:hover {
+      color: white;
+      text-shadow: 0 0 12px rgba(96,165,250,.35);
+    }
+
+    .footer-note {
+      text-align: center;
+      color: var(--text-soft);
+      padding: 10px 0 24px;
+    }
+
+    .reveal-up {
+      opacity: 0;
+      transform: translateY(25px);
+      transition: 1s ease;
+    }
+
+    .reveal-up.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .mobile-topbar {
+      display: none;
+      position: sticky;
+      top: 0;
+      z-index: 999;
+      background: rgba(5, 8, 22, .85);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(147,197,253,.12);
+      padding: 14px 16px;
+    }
+
+    .mobile-topbar .btn {
+      border-radius: 14px;
+    }
+
+    @media (max-width: 991.98px) {
+      .sidebar {
+        display: none;
+      }
+
+      .mobile-topbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .content-area {
+        padding: 20px;
+      }
+
+      .hero {
+        min-height: auto;
+        padding-top: 20px;
+      }
+
+      .hero-card,
+      .section-card {
+        padding: 24px;
+      }
+
+      .hero-stats {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 575.98px) {
+      .hero h1 {
+        font-size: 2.2rem;
+      }
+
+      .section-title {
+        font-size: 1.55rem;
+      }
+
+      .hero-actions {
+        flex-direction: column;
+      }
+
+      .btn-main,
+      .btn-outline-custom {
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="mobile-topbar">
+    <div>
+      <strong class="metal-text">Meu Portfólio</strong>
+    </div>
+    <button class="btn btn-outline-light btn-sm" data-bs-toggle="offcanvas" data-bs-target="#mobileSidebar">
+      <i class="bi bi-list"></i>
+    </button>
+  </div>
+
+  <div class="offcanvas offcanvas-start text-bg-dark" tabindex="-1" id="mobileSidebar">
+    <div class="offcanvas-header border-bottom border-secondary-subtle">
+      <h5 class="offcanvas-title metal-text">Navegação</h5>
+      <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button>
+    </div>
+    <div class="offcanvas-body">
+      <nav class="sidebar-nav">
+        <a href="#portfolio"><i class="bi bi-grid"></i> Portfólio</a>
+        <a href="#sobre"><i class="bi bi-person"></i> Sobre Mim</a>
+        <a href="#skills"><i class="bi bi-cpu"></i> Skills</a>
+        <a href="#formacoes"><i class="bi bi-mortarboard"></i> Formações</a>
+        <a href="#projetos"><i class="bi bi-code-square"></i> Projetos</a>
+        <a href="#experiencia"><i class="bi bi-briefcase"></i> Experiência</a>
+        <a href="#contato"><i class="bi bi-envelope"></i> Contato</a>
+        <a href="#extra"><i class="bi bi-stars"></i> Extra</a>
+      </nav>
+    </div>
+  </div>
+
+  <div class="container-fluid app-shell">
+    <div class="row g-0">
+      <aside class="col-lg-3 col-xl-3 sidebar">
+        <!-- Partial: Sidebar -->
+        <div class="sidebar-partial">
+          <div class="w-100 text-center">
+            <div class="profile-photo mx-auto">
+              <div class="profile-photo-inner">
+                <i class="bi bi-code-slash"></i>
+              </div>
+            </div>
+
+            <h2 class="sidebar-name metal-text">Seu Nome</h2>
+            <p class="sidebar-role">Desenvolvedor | Programador</p>
+
+            <div class="social-links">
+              <a href="#" target="_blank" title="GitHub"><i class="bi bi-github"></i></a>
+              <a href="#" target="_blank" title="LinkedIn"><i class="bi bi-linkedin"></i></a>
+              <a href="#" target="_blank" title="Instagram"><i class="bi bi-instagram"></i></a>
+              <a href="#" target="_blank" title="WhatsApp"><i class="bi bi-whatsapp"></i></a>
+            </div>
+
+            <div class="divider-custom"></div>
+
+            <nav class="sidebar-nav">
+              <a class="active" href="#portfolio"><i class="bi bi-grid"></i> Portfólio</a>
+              <a href="#sobre"><i class="bi bi-person"></i> Sobre Mim</a>
+              <a href="#skills"><i class="bi bi-cpu"></i> Skills</a>
+              <a href="#formacoes"><i class="bi bi-mortarboard"></i> Formações</a>
+              <a href="#projetos"><i class="bi bi-code-square"></i> Projetos</a>
+              <a href="#experiencia"><i class="bi bi-briefcase"></i> Experiência</a>
+              <a href="#contato"><i class="bi bi-envelope"></i> Contato</a>
+              <a href="#extra"><i class="bi bi-stars"></i> Extra</a>
+            </nav>
+          </div>
+
+          <div class="w-100 text-center">
+            <p class="sidebar-role mb-2">Subtítulo</p>
+            <div class="tag-stack">
+              <span>N8N</span>
+              <span>Python</span>
+              <span>Windows PA</span>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      <main class="col-lg-9 col-xl-9 content-area">
+        <section id="portfolio" class="hero">
+          <div class="glass-card hero-card w-100" data-aos="zoom-in-up" data-aos-duration="1200">
+            <div class="hero-kicker">
+              <i class="bi bi-stars"></i>
+              <span>Portfólio Profissional • Tema Dark Blue</span>
+            </div>
+
+            <h1>
+              Construindo <span class="gradient-text">soluções modernas</span>,
+              interfaces marcantes e automações inteligentes.
+            </h1>
+
+            <p>
+              Sou um profissional da área de programação focado em desenvolvimento de interfaces,
+              automações, scripts e soluções digitais de alto impacto. Este portfólio foi criado com
+              estética dark, detalhes azuis, visual metálico, sombras intensas, degradês sofisticados
+              e animações suaves para transmitir tecnologia, performance e elegância.
+            </p>
+
+            <div class="hero-actions">
+              <a href="#projetos" class="btn-main">
+                <i class="bi bi-rocket-takeoff"></i> Ver Projetos
+              </a>
+              <a href="#contato" class="btn-outline-custom">
+                <i class="bi bi-chat-dots"></i> Entrar em Contato
+              </a>
+            </div>
+
+            <div class="hero-stats">
+              <div class="stat-box reveal-up">
+                <div class="stat-number" data-count="25">0</div>
+                <div class="stat-label">Projetos desenvolvidos</div>
+              </div>
+              <div class="stat-box reveal-up">
+                <div class="stat-number" data-count="5">0</div>
+                <div class="stat-label">Áreas de atuação</div>
+              </div>
+              <div class="stat-box reveal-up">
+                <div class="stat-number" data-count="100">0</div>
+                <div class="stat-label">Foco em evolução contínua</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="sobre" class="section-space">
+          <div class="section-card" data-aos="fade-up" data-aos-duration="1000">
+            <h2 class="section-title metal-text">Sobre Mim</h2>
+            <p class="section-subtitle">Minha essência, objetivos e visão profissional.</p>
+
+            <div class="row g-4 align-items-center">
+              <div class="col-lg-7">
+                <p class="card-text-custom">
+                  Sou apaixonado por tecnologia e programação, com interesse em construir sistemas,
+                  interfaces web modernas, automações de processos e soluções que entreguem valor real.
+                  Gosto de unir criatividade, lógica e organização para desenvolver experiências digitais
+                  bem estruturadas, intuitivas e visualmente impactantes.
+                </p>
+                <p class="card-text-custom mt-3">
+                  Minha atuação inclui desenvolvimento com foco em performance, responsividade,
+                  escalabilidade e boa experiência do usuário. Também busco constante evolução nas áreas
+                  de automação com N8N, scripts em Python e otimização de ambientes Windows.
+                </p>
+              </div>
+              <div class="col-lg-5">
+                <div class="extra-card h-100">
+                  <div class="extra-icon"><i class="bi bi-lightning-charge-fill"></i></div>
+                  <h3 class="card-title-custom">Meu diferencial</h3>
+                  <p class="card-text-custom">
+                    Combino estética premium, automação inteligente e visão estratégica para criar soluções
+                    robustas, elegantes e eficientes.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="skills" class="section-space">
+          <div class="section-card" data-aos="fade-up-right" data-aos-duration="1100">
+            <h2 class="section-title metal-text">Skills</h2>
+            <p class="section-subtitle">Tecnologias e competências que impulsionam meus projetos.</p>
+
+            <div class="skill-grid">
+              <div class="skill-card" data-aos="flip-left">
+                <div class="skill-icon"><i class="bi bi-diagram-3"></i></div>
+                <h3 class="card-title-custom">N8N</h3>
+                <p class="card-text-custom">Criação de fluxos de automação, integrações e otimização de processos.</p>
+                <div class="progress-custom"><div class="progress-bar-custom" style="width: 88%"></div></div>
+              </div>
+
+              <div class="skill-card" data-aos="flip-left" data-aos-delay="100">
+                <div class="skill-icon"><i class="bi bi-filetype-py"></i></div>
+                <h3 class="card-title-custom">Python</h3>
+                <p class="card-text-custom">Scripts, automações, manipulação de dados e desenvolvimento back-end.</p>
+                <div class="progress-custom"><div class="progress-bar-custom" style="width: 92%"></div></div>
+              </div>
+
+              <div class="skill-card" data-aos="flip-left" data-aos-delay="200">
+                <div class="skill-icon"><i class="bi bi-window"></i></div>
+                <h3 class="card-title-custom">Windows PA</h3>
+                <p class="card-text-custom">Suporte, produtividade, administração de ambiente e rotinas técnicas.</p>
+                <div class="progress-custom"><div class="progress-bar-custom" style="width: 83%"></div></div>
+              </div>
+
+              <div class="skill-card" data-aos="flip-left" data-aos-delay="300">
+                <div class="skill-icon"><i class="bi bi-code-square"></i></div>
+                <h3 class="card-title-custom">Front-end</h3>
+                <p class="card-text-custom">HTML, CSS, JavaScript, Bootstrap e interfaces modernas responsivas.</p>
+                <div class="progress-custom"><div class="progress-bar-custom" style="width: 95%"></div></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="formacoes" class="section-space">
+          <div class="section-card" data-aos="fade-up-left" data-aos-duration="1100">
+            <h2 class="section-title metal-text">Formações</h2>
+            <p class="section-subtitle">Minha base de aprendizado e evolução na área de tecnologia.</p>
+
+            <div class="formation-grid">
+              <div class="formation-card">
+                <div class="formation-icon"><i class="bi bi-mortarboard-fill"></i></div>
+                <h3 class="card-title-custom">Formação em Programação</h3>
+                <p class="card-text-custom">Estudos focados em lógica, desenvolvimento web, automação e boas práticas.</p>
+              </div>
+
+              <div class="formation-card">
+                <div class="formation-icon"><i class="bi bi-journal-code"></i></div>
+                <h3 class="card-title-custom">Cursos Complementares</h3>
+                <p class="card-text-custom">Especialização contínua em Python, N8N, front-end e produtividade digital.</p>
+              </div>
+
+              <div class="formation-card">
+                <div class="formation-icon"><i class="bi bi-graph-up-arrow"></i></div>
+                <h3 class="card-title-custom">Aprimoramento Contínuo</h3>
+                <p class="card-text-custom">Sempre buscando atualização, novas ferramentas e evolução técnica constante.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="projetos" class="section-space">
+          <div class="section-card" data-aos="zoom-in" data-aos-duration="1000">
+            <h2 class="section-title metal-text">Projetos</h2>
+            <p class="section-subtitle">Alguns exemplos de trabalhos e soluções que representariam meu portfólio.</p>
+
+            <div class="project-grid">
+              <div class="project-card" data-aos="fade-up" data-aos-delay="0">
+                <div class="project-icon"><i class="bi bi-globe2"></i></div>
+                <h3 class="card-title-custom">Site Profissional Responsivo</h3>
+                <p class="card-text-custom">Desenvolvimento de landing page moderna com foco em apresentação, conversão e design premium.</p>
+                <span class="project-badge">HTML • CSS • JS • Bootstrap</span>
+              </div>
+
+              <div class="project-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="project-icon"><i class="bi bi-robot"></i></div>
+                <h3 class="card-title-custom">Automação com N8N</h3>
+                <p class="card-text-custom">Fluxos para automatizar tarefas, conectar APIs, organizar processos e reduzir retrabalho.</p>
+                <span class="project-badge">N8N • APIs • Automação</span>
+              </div>
+
+              <div class="project-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="project-icon"><i class="bi bi-terminal"></i></div>
+                <h3 class="card-title-custom">Scripts Inteligentes em Python</h3>
+                <p class="card-text-custom">Ferramentas para tratamento de dados, automações locais e rotinas otimizadas.</p>
+                <span class="project-badge">Python • Scripts • Dados</span>
+              </div>
+
+              <div class="project-card" data-aos="fade-up" data-aos-delay="300">
+                <div class="project-icon"><i class="bi bi-windows"></i></div>
+                <h3 class="card-title-custom">Soluções para Windows PA</h3>
+                <p class="card-text-custom">Configuração, produtividade, manutenção e melhorias em ambientes Windows.</p>
+                <span class="project-badge">Windows • Performance • Suporte</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="experiencia" class="section-space">
+          <div class="section-card" data-aos="fade-up" data-aos-duration="1000">
+            <h2 class="section-title metal-text">Experiência</h2>
+            <p class="section-subtitle">Minha trajetória, atuação e vivência prática no universo da tecnologia.</p>
+
+            <div class="timeline">
+              <div class="timeline-card" data-aos="fade-left">
+                <div class="timeline-date">2026 • Atual</div>
+                <h3 class="card-title-custom">Desenvolvedor e Especialista em Automação</h3>
+                <p class="card-text-custom">Atuação no desenvolvimento de interfaces, fluxos automatizados e soluções para produtividade digital.</p>
+              </div>
+
+              <div class="timeline-card" data-aos="fade-left" data-aos-delay="100">
+                <div class="timeline-date">2025</div>
+                <h3 class="card-title-custom">Projetos Independentes e Portfólio</h3>
+                <p class="card-text-custom">Criação de projetos próprios para fortalecer presença profissional, prática e domínio técnico.</p>
+              </div>
+
+              <div class="timeline-card" data-aos="fade-left" data-aos-delay="200">
+                <div class="timeline-date">2024</div>
+                <h3 class="card-title-custom">Aprofundamento Técnico</h3>
+                <p class="card-text-custom">Foco em evolução prática com Python, automações, interfaces web e processos inteligentes.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="contato" class="section-space">
+          <div class="section-card" data-aos="zoom-in-up" data-aos-duration="1000">
+            <h2 class="section-title metal-text">Contato</h2>
+            <p class="section-subtitle">Vamos conversar sobre projetos, parcerias ou oportunidades.</p>
+
+            <div class="contact-list">
+              <div class="contact-card">
+                <div class="contact-icon"><i class="bi bi-envelope-fill"></i></div>
+                <h3 class="card-title-custom">E-mail</h3>
+                <a class="contact-link" href="mailto:seuemail@exemplo.com">seuemail@exemplo.com</a>
+              </div>
+
+              <div class="contact-card">
+                <div class="contact-icon"><i class="bi bi-linkedin"></i></div>
+                <h3 class="card-title-custom">LinkedIn</h3>
+                <a class="contact-link" href="#" target="_blank">linkedin.com/in/seuperfil</a>
+              </div>
+
+              <div class="contact-card">
+                <div class="contact-icon"><i class="bi bi-github"></i></div>
+                <h3 class="card-title-custom">GitHub</h3>
+                <a class="contact-link" href="#" target="_blank">github.com/seuusuario</a>
+              </div>
+
+              <div class="contact-card">
+                <div class="contact-icon"><i class="bi bi-whatsapp"></i></div>
+                <h3 class="card-title-custom">WhatsApp</h3>
+                <a class="contact-link" href="#" target="_blank">Fale comigo diretamente</a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="extra" class="section-space">
+          <div class="section-card" data-aos="fade-up" data-aos-duration="1000">
+            <h2 class="section-title metal-text">Extra</h2>
+            <p class="section-subtitle">Subtítulo extra com os destaques principais da minha atuação.</p>
+
+            <div class="extra-grid">
+              <div class="extra-card" data-aos="zoom-in" data-aos-delay="0">
+                <div class="extra-icon"><i class="bi bi-diagram-2-fill"></i></div>
+                <h3 class="card-title-custom">N8N</h3>
+                <p class="card-text-custom">Automação de fluxos, integração de plataformas e ganho de produtividade.</p>
+              </div>
+
+              <div class="extra-card" data-aos="zoom-in" data-aos-delay="100">
+                <div class="extra-icon"><i class="bi bi-filetype-py"></i></div>
+                <h3 class="card-title-custom">Python</h3>
+                <p class="card-text-custom">Soluções práticas, scripts sob medida e eficiência em rotinas técnicas.</p>
+              </div>
+
+              <div class="extra-card" data-aos="zoom-in" data-aos-delay="200">
+                <div class="extra-icon"><i class="bi bi-pc-display"></i></div>
+                <h3 class="card-title-custom">Windows PA</h3>
+                <p class="card-text-custom">Conhecimento operacional, suporte, melhorias e organização de ambiente.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <p class="footer-note">© 2026 • Portfólio de Programação • Tema dark com detalhes azuis</p>
+      </main>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- AOS -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+  <script>
+    AOS.init({
+      duration: 1000,
+      once: true,
+      offset: 80
+    });
+
+    const sections = document.querySelectorAll('main section[id]');
+    const navLinks = document.querySelectorAll('.sidebar-nav a');
+
+    function setActiveLink() {
+      let current = '';
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop - 140;
+        if (window.scrollY >= sectionTop) {
+          current = section.getAttribute('id');
+        }
+      });
+
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === `#${current}`) {
+          link.classList.add('active');
+        }
+      });
+    }
+
+    window.addEventListener('scroll', setActiveLink);
+    window.addEventListener('load', setActiveLink);
+
+    const counters = document.querySelectorAll('[data-count]');
+    const speed = 120;
+
+    const animateCounter = (counter) => {
+      const target = +counter.getAttribute('data-count');
+      let count = 0;
+      const increment = Math.max(1, Math.floor(target / speed));
+
+      const update = () => {
+        count += increment;
+        if (count < target) {
+          counter.innerText = count;
+          requestAnimationFrame(update);
+        } else {
+          counter.innerText = target;
+        }
+      };
+      update();
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('show');
+          if (entry.target.querySelector('[data-count]')) {
+            const number = entry.target.querySelector('[data-count]');
+            if (!number.classList.contains('counted')) {
+              animateCounter(number);
+              number.classList.add('counted');
+            }
+          }
+        }
+      });
+    }, { threshold: 0.35 });
+
+    document.querySelectorAll('.reveal-up').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
