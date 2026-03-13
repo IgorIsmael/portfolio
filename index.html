@@ -1176,8 +1176,10 @@
       -webkit-text-fill-color: transparent;
     }
 
+    /* ================================================================
+       RESPONSIVIDADE TABLET (≤1199px)
+       ================================================================ */
     @media (max-width: 1199.98px) {
-
       .skill-grid,
       .project-grid,
       .extra-grid,
@@ -1187,6 +1189,9 @@
       }
     }
 
+    /* ================================================================
+       RESPONSIVIDADE TABLET/MOBILE (≤991px) — sidebar some, topbar aparece
+       ================================================================ */
     @media (max-width: 991.98px) {
       .sidebar {
         display: none;
@@ -1199,40 +1204,358 @@
       }
 
       .content-area {
-        padding: 20px;
+        padding: 18px 14px;
       }
 
       .hero {
         min-height: auto;
-        padding-top: 20px;
+        padding-top: 16px;
       }
 
       .hero-card,
       .section-card {
-        padding: 24px;
+        padding: 24px 20px;
       }
 
+      /* Stats: 3 colunas ainda cabem em tablet */
       .hero-stats {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 12px;
+      }
+
+      /* Remove scroll interno do grid de projetos */
+      .project-grid {
+        max-height: none;
+        overflow-y: visible;
+        padding-right: 0;
+      }
+
+      /* Offcanvas sidebar com fundo consistente */
+      .offcanvas.offcanvas-start {
+        background: linear-gradient(180deg, #060c1c 0%, #08111f 100%);
+        border-right: 1px solid rgba(147,197,253,.1);
+      }
+
+      .offcanvas-header {
+        border-bottom-color: rgba(147,197,253,.12) !important;
       }
     }
 
-    @media (max-width: 575.98px) {
-      .hero h1 {
-        font-size: 2.2rem;
+    /* ================================================================
+       MOBILE (≤767px) — layouts de 2 colunas viram 1
+       ================================================================ */
+    @media (max-width: 767.98px) {
+      .content-area {
+        padding: 14px 10px;
       }
 
+      .hero-card {
+        padding: 22px 16px;
+      }
+
+      .section-card {
+        padding: 20px 16px;
+        margin-bottom: 18px;
+      }
+
+      /* Título da seção menor */
       .section-title {
-        font-size: 1.55rem;
+        font-size: 1.6rem;
       }
 
+      /* Todos os grids viram 1 coluna */
+      .skill-grid,
+      .extra-grid,
+      .formation-grid,
+      .contact-list {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+
+      /* Projetos: 1 coluna mas sem scroll */
+      .project-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+        max-height: none;
+        overflow-y: visible;
+      }
+
+      /* Hero stats: 2 colunas em mobile médio */
+      .hero-stats {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+      }
+
+      /* Botões de ação do hero em coluna */
       .hero-actions {
         flex-direction: column;
+        gap: 10px;
       }
 
       .btn-main,
       .btn-outline-custom {
         justify-content: center;
+        width: 100%;
+        text-align: center;
+        padding: 13px 20px;
+      }
+
+      /* Filtros de projeto: wrap com menor tamanho */
+      .project-filter {
+        gap: 6px;
+      }
+
+      .project-filter-btn {
+        font-size: .78rem;
+        padding: 6px 10px;
+      }
+
+      /* Cards — garantir que não ultrapassem */
+      .skill-card,
+      .project-card,
+      .extra-card,
+      .formation-card,
+      .timeline-card,
+      .contact-card {
+        width: 100%;
+        min-width: 0;
+        box-sizing: border-box;
+        padding: 16px;
+      }
+
+      /* Ações de projeto: 3 botões lado a lado mas menores */
+      .project-actions {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 6px;
+      }
+
+      .project-btn {
+        padding: 7px 6px;
+        font-size: .72rem;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      /* Badges não quebram layout */
+      .project-badge {
+        font-size: .72rem;
+        padding: 6px 10px;
+        display: block;
+        word-break: break-word;
+        white-space: normal;
+      }
+
+      /* Timeline ajustada */
+      .timeline {
+        padding-left: 20px;
+      }
+
+      .timeline::before {
+        left: 4px;
+      }
+
+      .timeline-card::before {
+        left: -25px;
+        width: 12px;
+        height: 12px;
+      }
+
+      /* Sobre mim: coluna única (row bootstrap) */
+      .row.g-4.align-items-center > .col-lg-7,
+      .row.g-4.align-items-center > .col-lg-5 {
+        width: 100%;
+        flex: 0 0 100%;
+        max-width: 100%;
+      }
+
+      /* Ocultar label "Modo Light" do toggle de tema quando há pouco espaço */
+      .theme-toggle span {
+        display: none;
+      }
+    }
+
+    /* ================================================================
+       MOBILE PEQUENO (≤575px) — ajustes finais
+       ================================================================ */
+    @media (max-width: 575.98px) {
+      .content-area {
+        padding: 10px 8px;
+      }
+
+      .hero h1 {
+        font-size: 1.9rem;
+        line-height: 1.1;
+      }
+
+      /* Typed text: remover altura fixa */
+      .hero h2 {
+        font-size: 1.15rem !important;
+        height: auto !important;
+        min-height: 36px;
+      }
+
+      .section-title {
+        font-size: 1.4rem;
+      }
+
+      /* Stat boxes em 1 coluna */
+      .hero-stats {
+        grid-template-columns: 1fr;
+        gap: 8px;
+      }
+
+      .stat-box {
+        padding: 14px 16px;
+      }
+
+      .stat-number {
+        font-size: 1.3rem;
+      }
+
+      /* Hero card mais compacto */
+      .hero-card {
+        padding: 18px 14px;
+      }
+
+      .hero p {
+        font-size: .9rem;
+        margin-bottom: 20px;
+      }
+
+      .hero-kicker {
+        padding: 8px 12px;
+        font-size: .82rem;
+        gap: 6px;
+        margin-bottom: 14px;
+      }
+
+      .section-card {
+        padding: 16px 12px;
+        border-radius: 18px;
+      }
+
+      /* Cards menores */
+      .skill-card,
+      .project-card,
+      .extra-card,
+      .formation-card,
+      .timeline-card,
+      .contact-card {
+        padding: 14px 12px;
+        border-radius: 16px;
+      }
+
+      /* Ícone dos cards menor */
+      .skill-icon,
+      .project-icon,
+      .extra-icon,
+      .formation-icon,
+      .contact-icon {
+        width: 46px;
+        height: 46px;
+        font-size: 1.1rem;
+        margin-bottom: 12px;
+      }
+
+      /* Ações de projeto: 1 botão Primary em cima, 2 embaixo */
+      .project-actions {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto auto;
+        gap: 6px;
+      }
+
+      .project-actions .project-btn.primary {
+        grid-column: 1 / -1;  /* ocupa linha inteira */
+      }
+
+      .project-btn {
+        padding: 8px;
+        font-size: .74rem;
+        white-space: normal;
+        text-overflow: unset;
+        overflow: visible;
+      }
+
+      /* Project icon wrapper menor */
+      .project-icon-wrapper {
+        height: 100px;
+        margin-bottom: 12px;
+      }
+
+      .project-icon-wrapper i {
+        font-size: 2.5rem;
+      }
+
+      /* Filtros em wrap */
+      .project-filter {
+        gap: 5px;
+      }
+
+      .project-filter-btn {
+        font-size: .72rem;
+        padding: 5px 9px;
+      }
+
+      /* Texto do card menor */
+      .card-text-custom {
+        font-size: .88rem;
+        line-height: 1.6;
+      }
+
+      .card-title-custom {
+        font-size: 1rem;
+      }
+
+      /* Timeline ainda mais compacta */
+      .timeline {
+        padding-left: 16px;
+      }
+
+      .timeline-card::before {
+        left: -21px;
+        top: 22px;
+        width: 10px;
+        height: 10px;
+      }
+
+      /* Section card tags stack */
+      .tag-stack span {
+        font-size: .72rem;
+        padding: 6px 10px;
+      }
+
+      /* Skills: hard skill labels */
+      .hard-skill-row .d-flex.justify-content-between {
+        flex-direction: column;
+        gap: 2px;
+        margin-bottom: 4px;
+      }
+
+      .hard-skill-row .d-flex.justify-content-between > span:last-child {
+        color: var(--primary-3);
+        font-size: .76rem;
+      }
+    }
+
+    /* ================================================================
+       MUITO PEQUENO (≤400px)
+       ================================================================ */
+    @media (max-width: 400px) {
+      .hero h1 {
+        font-size: 1.65rem;
+      }
+
+      .mobile-topbar {
+        padding: 10px 12px;
+      }
+
+      .hero h2 {
+        font-size: 1rem !important;
+      }
+
+      .section-card {
+        padding: 14px 10px;
       }
     }
   </style>
