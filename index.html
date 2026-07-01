@@ -1180,6 +1180,7 @@
        RESPONSIVIDADE TABLET (≤1199px)
        ================================================================ */
     @media (max-width: 1199.98px) {
+
       .skill-grid,
       .project-grid,
       .extra-grid,
@@ -1233,11 +1234,11 @@
       /* Offcanvas sidebar com fundo consistente */
       .offcanvas.offcanvas-start {
         background: linear-gradient(180deg, #060c1c 0%, #08111f 100%);
-        border-right: 1px solid rgba(147,197,253,.1);
+        border-right: 1px solid rgba(147, 197, 253, .1);
       }
 
       .offcanvas-header {
-        border-bottom-color: rgba(147,197,253,.12) !important;
+        border-bottom-color: rgba(147, 197, 253, .12) !important;
       }
     }
 
@@ -1362,8 +1363,8 @@
       }
 
       /* Sobre mim: coluna única (row bootstrap) */
-      .row.g-4.align-items-center > .col-lg-7,
-      .row.g-4.align-items-center > .col-lg-5 {
+      .row.g-4.align-items-center>.col-lg-7,
+      .row.g-4.align-items-center>.col-lg-5 {
         width: 100%;
         flex: 0 0 100%;
         max-width: 100%;
@@ -1466,7 +1467,8 @@
       }
 
       .project-actions .project-btn.primary {
-        grid-column: 1 / -1;  /* ocupa linha inteira */
+        grid-column: 1 / -1;
+        /* ocupa linha inteira */
       }
 
       .project-btn {
@@ -1532,7 +1534,7 @@
         margin-bottom: 4px;
       }
 
-      .hard-skill-row .d-flex.justify-content-between > span:last-child {
+      .hard-skill-row .d-flex.justify-content-between>span:last-child {
         color: var(--primary-3);
         font-size: .76rem;
       }
@@ -1739,56 +1741,68 @@
               <div class="col-lg-5">
                 <div class="skill-card h-100" style="padding: 24px;">
                   <h4 class="card-title-custom mb-1">Soft Skills</h4>
-                  <p class="card-text-custom mb-4" style="font-size:.85rem;">Como me relaciono, comunico e organizo para entregar resultados.</p>
+                  <p class="card-text-custom mb-4" style="font-size:.85rem;">Como me relaciono, comunico e organizo para
+                    entregar resultados.</p>
 
                   <div class="d-flex flex-column gap-3">
                     <div class="d-flex align-items-start gap-3">
-                      <div style="min-width:36px;height:36px;border-radius:10px;background:linear-gradient(145deg,rgba(59,130,246,.22),rgba(255,255,255,.04));border:1px solid rgba(147,197,253,.2);display:flex;align-items:center;justify-content:center;">
+                      <div
+                        style="min-width:36px;height:36px;border-radius:10px;background:linear-gradient(145deg,rgba(59,130,246,.22),rgba(255,255,255,.04));border:1px solid rgba(147,197,253,.2);display:flex;align-items:center;justify-content:center;">
                         <i class="bi bi-chat-dots" style="color:var(--primary-3);font-size:1rem;"></i>
                       </div>
                       <div>
                         <div class="card-title-custom" style="font-size:.95rem;margin-bottom:3px;">Comunicação</div>
-                        <div class="card-text-custom" style="font-size:.83rem;">Mensagens claras, documentação objetiva e facilitação de alinhamentos.</div>
+                        <div class="card-text-custom" style="font-size:.83rem;">Mensagens claras, documentação objetiva
+                          e facilitação de alinhamentos.</div>
                       </div>
                     </div>
 
                     <div class="d-flex align-items-start gap-3">
-                      <div style="min-width:36px;height:36px;border-radius:10px;background:linear-gradient(145deg,rgba(59,130,246,.22),rgba(255,255,255,.04));border:1px solid rgba(147,197,253,.2);display:flex;align-items:center;justify-content:center;">
+                      <div
+                        style="min-width:36px;height:36px;border-radius:10px;background:linear-gradient(145deg,rgba(59,130,246,.22),rgba(255,255,255,.04));border:1px solid rgba(147,197,253,.2);display:flex;align-items:center;justify-content:center;">
                         <i class="bi bi-people" style="color:var(--primary-3);font-size:1rem;"></i>
                       </div>
                       <div>
-                        <div class="card-title-custom" style="font-size:.95rem;margin-bottom:3px;">Trabalho em Equipe</div>
-                        <div class="card-text-custom" style="font-size:.83rem;">Pair programming, code review construtivo e colaboração contínua.</div>
+                        <div class="card-title-custom" style="font-size:.95rem;margin-bottom:3px;">Trabalho em Equipe
+                        </div>
+                        <div class="card-text-custom" style="font-size:.83rem;">Pair programming, code review
+                          construtivo e colaboração contínua.</div>
                       </div>
                     </div>
 
                     <div class="d-flex align-items-start gap-3">
-                      <div style="min-width:36px;height:36px;border-radius:10px;background:linear-gradient(145deg,rgba(59,130,246,.22),rgba(255,255,255,.04));border:1px solid rgba(147,197,253,.2);display:flex;align-items:center;justify-content:center;">
+                      <div
+                        style="min-width:36px;height:36px;border-radius:10px;background:linear-gradient(145deg,rgba(59,130,246,.22),rgba(255,255,255,.04));border:1px solid rgba(147,197,253,.2);display:flex;align-items:center;justify-content:center;">
                         <i class="bi bi-heart" style="color:var(--primary-3);font-size:1rem;"></i>
                       </div>
                       <div>
                         <div class="card-title-custom" style="font-size:.95rem;margin-bottom:3px;">Empatia</div>
-                        <div class="card-text-custom" style="font-size:.83rem;">Escuta ativa, compreensão de contextos e feedbacks respeitosos.</div>
+                        <div class="card-text-custom" style="font-size:.83rem;">Escuta ativa, compreensão de contextos e
+                          feedbacks respeitosos.</div>
                       </div>
                     </div>
 
                     <div class="d-flex align-items-start gap-3">
-                      <div style="min-width:36px;height:36px;border-radius:10px;background:linear-gradient(145deg,rgba(59,130,246,.22),rgba(255,255,255,.04));border:1px solid rgba(147,197,253,.2);display:flex;align-items:center;justify-content:center;">
+                      <div
+                        style="min-width:36px;height:36px;border-radius:10px;background:linear-gradient(145deg,rgba(59,130,246,.22),rgba(255,255,255,.04));border:1px solid rgba(147,197,253,.2);display:flex;align-items:center;justify-content:center;">
                         <i class="bi bi-clock-history" style="color:var(--primary-3);font-size:1rem;"></i>
                       </div>
                       <div>
                         <div class="card-title-custom" style="font-size:.95rem;margin-bottom:3px;">Paciência</div>
-                        <div class="card-text-custom" style="font-size:.83rem;">Calma em momentos de pressão, persistência em bugs e apoio a iniciantes.</div>
+                        <div class="card-text-custom" style="font-size:.83rem;">Calma em momentos de pressão,
+                          persistência em bugs e apoio a iniciantes.</div>
                       </div>
                     </div>
 
                     <div class="d-flex align-items-start gap-3">
-                      <div style="min-width:36px;height:36px;border-radius:10px;background:linear-gradient(145deg,rgba(59,130,246,.22),rgba(255,255,255,.04));border:1px solid rgba(147,197,253,.2);display:flex;align-items:center;justify-content:center;">
+                      <div
+                        style="min-width:36px;height:36px;border-radius:10px;background:linear-gradient(145deg,rgba(59,130,246,.22),rgba(255,255,255,.04));border:1px solid rgba(147,197,253,.2);display:flex;align-items:center;justify-content:center;">
                         <i class="bi bi-lightbulb" style="color:var(--primary-3);font-size:1rem;"></i>
                       </div>
                       <div>
                         <div class="card-title-custom" style="font-size:.95rem;margin-bottom:3px;">Criatividade</div>
-                        <div class="card-text-custom" style="font-size:.83rem;">Prototipação rápida, soluções fora da caixa e microinterações elegantes.</div>
+                        <div class="card-text-custom" style="font-size:.83rem;">Prototipação rápida, soluções fora da
+                          caixa e microinterações elegantes.</div>
                       </div>
                     </div>
                   </div>
@@ -1816,36 +1830,68 @@
 
                   <div class="d-flex flex-column gap-3">
                     <div class="hard-skill-row">
-                      <div class="d-flex justify-content-between mb-1"><span class="card-title-custom" style="font-size:.9rem;">JavaScript</span><span class="card-text-custom" style="font-size:.8rem;">Avançado</span></div>
-                      <div class="progress-custom"><div class="progress-bar-custom" style="width:90%"></div></div>
+                      <div class="d-flex justify-content-between mb-1"><span class="card-title-custom"
+                          style="font-size:.9rem;">JavaScript</span><span class="card-text-custom"
+                          style="font-size:.8rem;">Avançado</span></div>
+                      <div class="progress-custom">
+                        <div class="progress-bar-custom" style="width:90%"></div>
+                      </div>
                     </div>
                     <div class="hard-skill-row">
-                      <div class="d-flex justify-content-between mb-1"><span class="card-title-custom" style="font-size:.9rem;">NodeJS</span><span class="card-text-custom" style="font-size:.8rem;">Interm./Avanç.</span></div>
-                      <div class="progress-custom"><div class="progress-bar-custom" style="width:82%"></div></div>
+                      <div class="d-flex justify-content-between mb-1"><span class="card-title-custom"
+                          style="font-size:.9rem;">NodeJS</span><span class="card-text-custom"
+                          style="font-size:.8rem;">Interm./Avanç.</span></div>
+                      <div class="progress-custom">
+                        <div class="progress-bar-custom" style="width:82%"></div>
+                      </div>
                     </div>
                     <div class="hard-skill-row">
-                      <div class="d-flex justify-content-between mb-1"><span class="card-title-custom" style="font-size:.9rem;">Python</span><span class="card-text-custom" style="font-size:.8rem;">Interm./Avanç.</span></div>
-                      <div class="progress-custom"><div class="progress-bar-custom" style="width:80%"></div></div>
+                      <div class="d-flex justify-content-between mb-1"><span class="card-title-custom"
+                          style="font-size:.9rem;">Python</span><span class="card-text-custom"
+                          style="font-size:.8rem;">Interm./Avanç.</span></div>
+                      <div class="progress-custom">
+                        <div class="progress-bar-custom" style="width:80%"></div>
+                      </div>
                     </div>
                     <div class="hard-skill-row">
-                      <div class="d-flex justify-content-between mb-1"><span class="card-title-custom" style="font-size:.9rem;">PHP</span><span class="card-text-custom" style="font-size:.8rem;">Intermediário</span></div>
-                      <div class="progress-custom"><div class="progress-bar-custom" style="width:65%"></div></div>
+                      <div class="d-flex justify-content-between mb-1"><span class="card-title-custom"
+                          style="font-size:.9rem;">PHP</span><span class="card-text-custom"
+                          style="font-size:.8rem;">Intermediário</span></div>
+                      <div class="progress-custom">
+                        <div class="progress-bar-custom" style="width:65%"></div>
+                      </div>
                     </div>
                     <div class="hard-skill-row">
-                      <div class="d-flex justify-content-between mb-1"><span class="card-title-custom" style="font-size:.9rem;">HTML / CSS</span><span class="card-text-custom" style="font-size:.8rem;">Avançado</span></div>
-                      <div class="progress-custom"><div class="progress-bar-custom" style="width:92%"></div></div>
+                      <div class="d-flex justify-content-between mb-1"><span class="card-title-custom"
+                          style="font-size:.9rem;">HTML / CSS</span><span class="card-text-custom"
+                          style="font-size:.8rem;">Avançado</span></div>
+                      <div class="progress-custom">
+                        <div class="progress-bar-custom" style="width:92%"></div>
+                      </div>
                     </div>
                     <div class="hard-skill-row">
-                      <div class="d-flex justify-content-between mb-1"><span class="card-title-custom" style="font-size:.9rem;">Bootstrap / Tailwind</span><span class="card-text-custom" style="font-size:.8rem;">Interm./Avanç.</span></div>
-                      <div class="progress-custom"><div class="progress-bar-custom" style="width:78%"></div></div>
+                      <div class="d-flex justify-content-between mb-1"><span class="card-title-custom"
+                          style="font-size:.9rem;">Bootstrap / Tailwind</span><span class="card-text-custom"
+                          style="font-size:.8rem;">Interm./Avanç.</span></div>
+                      <div class="progress-custom">
+                        <div class="progress-bar-custom" style="width:78%"></div>
+                      </div>
                     </div>
                     <div class="hard-skill-row">
-                      <div class="d-flex justify-content-between mb-1"><span class="card-title-custom" style="font-size:.9rem;">AWS</span><span class="card-text-custom" style="font-size:.8rem;">Básico/Interm.</span></div>
-                      <div class="progress-custom"><div class="progress-bar-custom" style="width:40%"></div></div>
+                      <div class="d-flex justify-content-between mb-1"><span class="card-title-custom"
+                          style="font-size:.9rem;">AWS</span><span class="card-text-custom"
+                          style="font-size:.8rem;">Básico/Interm.</span></div>
+                      <div class="progress-custom">
+                        <div class="progress-bar-custom" style="width:40%"></div>
+                      </div>
                     </div>
                     <div class="hard-skill-row">
-                      <div class="d-flex justify-content-between mb-1"><span class="card-title-custom" style="font-size:.9rem;">Banco de Dados</span><span class="card-text-custom" style="font-size:.8rem;">Interm./Avanç.</span></div>
-                      <div class="progress-custom"><div class="progress-bar-custom" style="width:75%"></div></div>
+                      <div class="d-flex justify-content-between mb-1"><span class="card-title-custom"
+                          style="font-size:.9rem;">Banco de Dados</span><span class="card-text-custom"
+                          style="font-size:.8rem;">Interm./Avanç.</span></div>
+                      <div class="progress-custom">
+                        <div class="progress-bar-custom" style="width:75%"></div>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -1903,19 +1949,22 @@
               <div class="formation-card" data-aos="flip-left">
                 <div class="formation-icon"><i class="bi bi-database-fill"></i></div>
                 <h3 class="card-title-custom">Administrando Banco de Dados</h3>
-                <p class="card-text-custom">Fundação Bradesco, 2026. Modelagem de dados, SQL (CRUD), controle de usuários, SGBD e boas práticas de administração.</p>
+                <p class="card-text-custom">Fundação Bradesco, 2026. Modelagem de dados, SQL (CRUD), controle de
+                  usuários, SGBD e boas práticas de administração.</p>
               </div>
 
               <div class="formation-card" data-aos="flip-left" data-aos-delay="100">
                 <div class="formation-icon"><i class="bi bi-robot"></i></div>
                 <h3 class="card-title-custom">IA para Pequenas e Médias Empresas</h3>
-                <p class="card-text-custom">Fundação Bradesco, 2025. Automação de tarefas, tomada de decisão inteligente com dados e uso estratégico de IA (ChatGPT, Midjourney).</p>
+                <p class="card-text-custom">Fundação Bradesco, 2025. Automação de tarefas, tomada de decisão inteligente
+                  com dados e uso estratégico de IA (ChatGPT, Midjourney).</p>
               </div>
 
               <div class="formation-card" data-aos="flip-left" data-aos-delay="200">
                 <div class="formation-icon"><i class="bi bi-code-square"></i></div>
                 <h3 class="card-title-custom">Introdução à POO</h3>
-                <p class="card-text-custom">Coursera, 2026. Fundamentos da Programação Orientada a Objetos: abstração, encapsulamento, herança e polimorfismo.</p>
+                <p class="card-text-custom">Coursera, 2026. Fundamentos da Programação Orientada a Objetos: abstração,
+                  encapsulamento, herança e polimorfismo.</p>
               </div>
             </div>
           </div>
@@ -1941,21 +1990,6 @@
                 <div class="card-content">
                   <div class="project-icon-wrapper">
                     <i class="bi bi-speedometer2"></i>
-                  </div>
-                  <h3 class="card-title-custom">Dashboard Administrativo</h3>
-                  <p class="card-text-custom">Links centralizados, redirecionamentos instantâneos e utilitários
-                    embutidos (calculadora e notas).</p>
-                  <div class="card-end">
-                    <span class="project-badge">Sistemas • JavaScript • HTML/CSS</span>
-                    <div class="project-actions">
-                      <a class="project-btn primary" href="https://heyarrthur.github.io/DashCOO/dash/index.html"
-                        target="_blank">Live Demo</a>
-                      <a class="project-btn secondary" href="https://heyarrthur.github.io/DashCOO/"
-                        target="_blank">Código</a>
-                      <button class="project-btn info" type="button" data-project-title="Dashboard Administrativo"
-                        data-project-description="Dashboard desenvolvido para centralizar acessos e ferramentas rápidas, focado em agilidade operacional para equipes.">Saiba
-                        Mais</button>
-                    </div>
                   </div>
                 </div>
               </div>
@@ -2118,13 +2152,15 @@
               <div class="timeline-card" data-aos="fade-left">
                 <div class="timeline-date">Set 2025 – Atual · Maximum</div>
                 <h3 class="card-title-custom">Desenvolvedor de Sistemas Júnior</h3>
-                <p class="card-text-custom">Desenvolvimento e manutenção de aplicações web full stack, criação de pages, scripts e automações. Suporte ao cliente e responsabilidade sobre entregas de ponta a ponta.</p>
+                <p class="card-text-custom">Desenvolvimento e manutenção de aplicações web full stack, criação de pages,
+                  scripts e automações. Suporte ao cliente e responsabilidade sobre entregas de ponta a ponta.</p>
               </div>
 
               <div class="timeline-card" data-aos="fade-left" data-aos-delay="100">
                 <div class="timeline-date">Jul 2025 · Maximum</div>
                 <h3 class="card-title-custom">Desenvolvimento de Sistemas</h3>
-                <p class="card-text-custom">Suporte ao cliente, deploys, criação de designs e acompanhamento de projetos em evolução contínua de arquiteturas web.</p>
+                <p class="card-text-custom">Suporte ao cliente, deploys, criação de designs e acompanhamento de projetos
+                  em evolução contínua de arquiteturas web.</p>
               </div>
             </div>
           </div>
